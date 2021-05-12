@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail; shopt -s nullglob; [[ -z ${TRACE:-} ]] || set -x; unset CDPATH; IFS=$' \t\n'
+
+cd "$(dirname "$(readlink -f "$0")")"/../.. || exit
+
+TESTROOT=$(readlink -f .local/tmp/t)
+export TESTROOT
+
+.cry() {
+	echo >&2 "$@"
+}
+
+.die() {
+	echo >&2 "$@"
+	exit 1
+}
+
+init() {
+	rm -rf "$TESTROOT"
+	mkdir -p "$TESTROOT"
+	trap '[[ $? -ne 0 ]] || rm -rf "$TESTROOT"' 0
+}
+
+run() {
+	local root=$1
+	shift
+
+	local name dir err
+	for t in "$root"/*.t; do
+		name=$(basename "$t") dir="$(dirname "$t")"
+
+		local err=0; (
+			pushd "$dir" &>/dev/null
+
+			.cry ">    $name" && ./"$name"
+		) || err=$?
+
+		if [[ $err -eq 0 ]]; then
+			.cry "✓    $name"
+		else
+			.die "✗    $name"
+		fi
+	done
+}
+
+main() {
+	local -A programs=(
+		[srv]='test/integration/srv'
+		[src]='test/integration/src'
+	)
+
+	local -a args
+	if [[ $# -eq 0 ]]; then
+		args=(srv src)
+	else
+		args=("$@")
+	fi
+
+	local t
+
+	init
+
+	local prg
+	for prg in "${args[@]}"; do
+		.cry "--> $prg"
+		.cry
+		run "${programs[$prg]}"
+		.cry
+	done
+}
+
+main "$@"

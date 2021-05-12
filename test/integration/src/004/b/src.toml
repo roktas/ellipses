@@ -1,0 +1,22 @@
+depends = [
+	"z"
+]
+
+[[symbols]]
+	symbol  = "a"
+	depends = [
+		"c"
+		"d"
+	]
+
+[[symbols]]
+	symbol  = "b"
+	depends = [
+		"c"
+	]
+
+[[symbols]]
+	symbol  = "c"
+
+[[symbols]]
+	symbol  = "d"

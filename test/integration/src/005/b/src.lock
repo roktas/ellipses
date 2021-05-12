@@ -1,0 +1,16 @@
+[
+  {
+    "source": "test.sh",
+    "series": [
+      {
+        "directive": "\t... github.com/acme/acme a\n",
+        "insertion": {
+          "before": 0,
+          "after": 6,
+          "signature": "\tZZZZ\n",
+          "digest": "df653eae6138d057a747c35baf2cc94f4e76756ad230f949ad9e308380bb77b9"
+        }
+      }
+    ]
+  }
+]

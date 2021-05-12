@@ -1,0 +1,25 @@
+[
+  {
+    "source": "test.sh",
+    "series": [
+      {
+        "directive": "\t... github.com/acme/acme a\n",
+        "insertion": {
+          "before": 0,
+          "after": 6,
+          "signature": "\tZZZZ\n",
+          "digest": "df653eae6138d057a747c35baf2cc94f4e76756ad230f949ad9e308380bb77b9"
+        }
+      },
+      {
+        "directive": "\t\t... github.com/acme/acme:1 b\n",
+        "insertion": {
+          "before": 0,
+          "after": 4,
+          "signature": "\t\tZZZZ\n",
+          "digest": "2d08ff01d42683f5d66bd7b4203a353ae9b2b04f127e9484682a039ffab6402b"
+        }
+      }
+    ]
+  }
+]

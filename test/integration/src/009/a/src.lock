@@ -1,0 +1,30 @@
+[
+  {
+    "source": "foo/lib/foo/support/file.rb",
+    "series": [
+      {
+        "directive": "  ... github.com/acme/acme support/file\n",
+        "insertion": {
+          "before": 5,
+          "after": 42,
+          "signature": "        path, base = ::File.join(*path), base ? ::File.join(*base) : '.' # Quotations must have been escaped here -> \"\"\n",
+          "digest": "23b9dd6e18980ad6c7791a85abdfcb92179efa6178728c99eeb7eeffa5e21036"
+        }
+      }
+    ]
+  },
+  {
+    "source": "foo/lib/foo/support/digest.rb",
+    "series": [
+      {
+        "directive": "  ... github.com/acme/acme support/digest\n",
+        "insertion": {
+          "before": 4,
+          "after": 2,
+          "signature": "      ::Digest::SHA256.hexdigest args.map(&:to_s).join\n",
+          "digest": "40e1d8871e60d527a2ae7493a4da46fe316dc5d0d8a78bd9541482abb18246e1"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+extension = ".rb"
+
+[[symbols]]
+	symbol  = "support"
+	depends = [
+		"support/file"
+		"support/digest"
+	]
+
+[[symbols]]
+	symbol  = "support/file"
+
+[[symbols]]
+	symbol  = "support/digest"

@@ -1,0 +1,16 @@
+[
+  {
+    "source": "test.sh",
+    "series": [
+      {
+        "directive": "\t... . a b\n",
+        "insertion": {
+          "before": 0,
+          "after": 6,
+          "signature": "\tZZZZ\n",
+          "digest": "7c663a8dbb15467d3376365a4d0464090c32042738365d7ba49fd9690d1b0acb"
+        }
+      }
+    ]
+  }
+]

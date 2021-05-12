@@ -1,0 +1,5 @@
+extension = ".ext"
+
+[[symbols]]
+	symbol = "a"
+	path   = "dir/other" 

@@ -1,0 +1,32 @@
+require: rubocop-performance
+
+Layout/HashAlignment:
+  Enabled: true
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Metrics/LineLength:
+  Max: 120
+
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+Naming/MethodParameterName:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FormatStringToken:
+  EnforcedStyle: template
+Style/Lambda:
+  Enabled: false
+Style/LambdaCall:
+  Enabled: false
+Style/ParallelAssignment:
+  Enabled: false
+
+Metrics/LineLength:
+  Exclude: test/**/*.rb
+Metrics/BlockLength:
+  Exclude: test/**/*.rb

@@ -1,0 +1,4 @@
+extension = ".ext"
+
+[[symbols]]
+	symbol = "a"
