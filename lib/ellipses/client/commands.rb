@@ -17,7 +17,7 @@ module Ellipses
         @registry[name]
       end
 
-      Dir[File.join(__dir__, 'commands/*.rb')].each { |command| require command }
+      Dir[File.join(__dir__, 'commands', '*.rb')].each(&method(:require))
     end
   end
 end
