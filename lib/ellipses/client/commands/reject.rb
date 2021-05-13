@@ -4,7 +4,7 @@ module Ellipses
   module Client
     module Commands
       class Reject < Command
-        command 'reject', argc: 1
+        command "reject", argc: 1
 
         include Command::Mixins::SetupPattern
 

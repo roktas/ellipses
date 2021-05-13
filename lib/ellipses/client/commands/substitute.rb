@@ -4,7 +4,7 @@ module Ellipses
   module Client
     module Commands
       class Substitute < Command
-        command 'sub', argc: 2
+        command "sub", argc: 2
 
         include Command::Mixins::SetupPattern
 

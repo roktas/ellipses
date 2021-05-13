@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'forwardable'
+require "forwardable"
 
 module Ellipses
   module Server
@@ -58,7 +58,7 @@ module Ellipses
       attr_reader :symbols, :global
 
       def initialize(hash)
-        symbols_array = hash.delete('symbols') || []
+        symbols_array = hash.delete("symbols") || []
         global_hash   = hash || {}
 
         @global  = Global.from_hash(global_hash)

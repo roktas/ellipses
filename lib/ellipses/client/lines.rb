@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'delegate'
+require "delegate"
 
 module Ellipses
   module Client
@@ -162,4 +162,3 @@ module Ellipses
     end
   end
 end
-

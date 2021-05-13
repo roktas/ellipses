@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'ellipses/server'
+require "ellipses/server"
 
 module Ellipses
   module Client
     class Source
       attr_reader :series
 
-      def initialize(lines, series, paths: nil)
+      def initialize(lines, series)
         @lines        = lines
         @series       = series || []
       end
@@ -60,7 +60,7 @@ module Ellipses
       class << self
         def from_file(file, series = nil)
           lines = File.readlines(Support.file!(file, error: Error)).lazy
-          new lines, series # FIXME: , paths: paths || [::File.dirname(file)]
+          new lines, series
         end
       end
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'json'
+require "json"
 
 module Ellipses
   module Client
@@ -20,7 +20,7 @@ module Ellipses
           base = lockfiles.find do |file|
             ::File.directory?(::File.join(rootdir, File.dirname(file)))
           end
-          raise Error, 'Unable to locate lockfile' unless base
+          raise Error, "Unable to locate lockfile" unless base
 
           ::File.join(rootdir, base)
         end

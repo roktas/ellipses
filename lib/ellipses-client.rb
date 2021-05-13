@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-require_relative 'ellipses'
-require_relative 'ellipses/client'
+require_relative "ellipses"
+require_relative "ellipses/client"

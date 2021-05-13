@@ -5,10 +5,10 @@ module Ellipses
     module CLI
       module Commands
         class Dump < Dry::CLI::Command
-          desc 'Dump symbols'
+          desc "Dump symbols"
 
-          argument :path,    type: :string, required: true,  desc: 'Source path'
-          argument :symbols, type: :array,  required: false, desc: 'Symbols'
+          argument :path,    type: :string, required: true,  desc: "Source path"
+          argument :symbols, type: :array,  required: false, desc: "Symbols"
 
           def call(path:, symbols: [], **)
             puts Ellipses::Server::Application.dump path, *symbols

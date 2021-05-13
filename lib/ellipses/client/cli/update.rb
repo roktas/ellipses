@@ -5,9 +5,9 @@ module Ellipses
     module CLI
       module Commands
         class Update < Dry::CLI::Command
-          desc 'Update'
+          desc "Update"
 
-          option :paths, type: :array, default: %w[.], desc: 'Providers path'
+          option :paths, type: :array, default: %w[.], desc: "Providers path"
 
           def call(*, paths:)
             Application.update(paths: paths)

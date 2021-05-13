@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'tomlrb'
+require "tomlrb"
 
 module Ellipses
   module Server
     class SourceFile
-      FILE = 'src.toml'
+      FILE = "src.toml"
 
       Error = Class.new(Error)
 

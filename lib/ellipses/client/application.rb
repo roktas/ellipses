@@ -4,7 +4,7 @@ module Ellipses
   module Client
     class Application
       DEFAULTS = {
-        rootdir: '.'
+        rootdir: "."
       }.freeze
 
       attr_reader :config, :repository, :loader, :server
@@ -28,7 +28,7 @@ module Ellipses
       end
 
       def init!
-        raise Error, 'Must be initialized' unless loader.exist?
+        raise Error, "Must be initialized" unless loader.exist?
 
         init
       end
@@ -36,11 +36,11 @@ module Ellipses
       def shutdown
         if repository.save.zero?
           warn
-          warn Support.warning 'No source changed'
+          warn Support.warning "No source changed"
           warn
         end
 
-        loader.write(dump) and warn Support.info('Updated lock file')
+        loader.write(dump) and warn Support.info("Updated lock file")
       end
 
       def compile(file)

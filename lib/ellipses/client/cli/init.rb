@@ -5,12 +5,12 @@ module Ellipses
     module CLI
       module Commands
         class Init < Dry::CLI::Command
-          desc 'Initialize repository'
+          desc "Initialize repository"
 
-          argument :rootdir, default: '.', desc: 'Root directory'
+          argument :rootdir, default: ".", desc: "Root directory"
 
           example [
-            'path/to/rootdir # Initialize repository at root directory'
+            "path/to/rootdir # Initialize repository at root directory"
           ]
 
           def call(rootdir:, **)

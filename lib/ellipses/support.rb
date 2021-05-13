@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'digest'
-require 'set'
-require 'pathname'
-require 'open3'
+require "digest"
+require "set"
+require "pathname"
+require "open3"
 
 # Generic helpers
 
@@ -39,9 +39,9 @@ module Ellipses
       "#{prefix}#{string}"
     end
 
-    # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength
     def path(path, base: nil, error: nil)
-      path, base = ::File.join(*path), base ? ::File.join(*base) : '.'
+      path, base = ::File.join(*path), base ? ::File.join(*base) : "."
 
       status = if ::File.directory?(base)
                  result = ::File.expand_path(path, base)
@@ -62,7 +62,7 @@ module Ellipses
 
       nil
     end
-    # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/PerceivedComplexity, Metrics/MethodLength
 
     def file(file, base: nil, error: nil)
       path(file, base: base, error: error) do |result|
@@ -85,11 +85,11 @@ module Ellipses
     end
 
     def expand_path(path, rootdir = nil)
-      Pathname.new(::File.join(rootdir || '.', path)).cleanpath.to_s
+      Pathname.new(::File.join(rootdir || ".", path)).cleanpath.to_s
     end
 
     def deflate_path(path, rootdir = nil)
-      base = Pathname.new(rootdir || '.').expand_path
+      base = Pathname.new(rootdir || ".").expand_path
       Pathname.new(path).cleanpath.expand_path.relative_path_from(base).to_s
     end
 
@@ -136,19 +136,19 @@ module Ellipses
     end
 
     def notice(string)
-      "#{Color.bold Color.green '✓'}  #{string}"
+      "#{Color.bold Color.green "✓"}  #{string}"
     end
 
     def info(string)
-      "#{Color.bold Color.green '✓'}  #{Color.dim string}"
+      "#{Color.bold Color.green "✓"}  #{Color.dim string}"
     end
 
     def error(string)
-      "#{Color.bold Color.red '✗'}  #{string}"
+      "#{Color.bold Color.red "✗"}  #{string}"
     end
 
     def warning(string)
-      "#{Color.bold Color.yellow '!'}  #{string}"
+      "#{Color.bold Color.yellow "!"}  #{string}"
     end
 
     module Shell
@@ -166,7 +166,7 @@ module Ellipses
         end
 
         def cmd
-          args.join ' '
+          args.join " "
         end
       end
 
@@ -190,7 +190,7 @@ module Ellipses
 
         def block(stdout, stderr, wait_thread)
           # Handle `^C`
-          trap('INT') { handle_sigint(wait_thread.pid) }
+          trap("INT") { handle_sigint(wait_thread.pid) }
 
           out = stdout.readlines.map(&:chomp)
           err = stderr.readlines.map(&:chomp)
@@ -200,9 +200,9 @@ module Ellipses
 
         def handle_sigint(pid) # rubocop:disable Metrics/MethodLength
           message, signal = if @coathooks > 1
-                              ['SIGINT received again. Force quitting...', 'KILL']
+                              ["SIGINT received again. Force quitting...", "KILL"]
                             else
-                              ['SIGINT received.', 'TERM']
+                              ["SIGINT received.", "TERM"]
                             end
 
           warn
@@ -210,7 +210,7 @@ module Ellipses
           ::Process.kill signal, pid
           @coathooks += 1
         rescue Errno::ESRCH
-          warn 'No process to kill.'
+          warn "No process to kill."
         end
       end
 

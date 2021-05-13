@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'set'
+require "set"
 
 module Ellipses
   module Server
@@ -92,7 +92,7 @@ module Ellipses
           return nil
         end
 
-        yield(symbol) if block_given?
+        yield(symbol) if block
       end
 
       def _register(symbol)
