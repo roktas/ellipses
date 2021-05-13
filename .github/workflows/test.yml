@@ -14,9 +14,6 @@ jobs:
         with:
           bundler-cache: true
       - name: Install dependencies
-        run: |
-          bundle config set path vendor/bundle
-          bundle config set without development
-          bundle install --jobs 4 --retry 3
+        run: bundle install
       - name: Run tests
         run: bundle exec rake
