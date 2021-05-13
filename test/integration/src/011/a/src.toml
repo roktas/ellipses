@@ -1,0 +1,20 @@
+root    = "x/y/z"
+
+depends = [
+	"z"
+]
+
+[[symbols]]
+	symbol  = "a"
+	depends = [
+		"c"
+	]
+
+[[symbols]]
+	symbol  = "b"
+	depends = [
+		"c"
+	]
+
+[[symbols]]
+	symbol  = "c"
