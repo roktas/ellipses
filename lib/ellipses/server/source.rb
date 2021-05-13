@@ -35,10 +35,14 @@ module Ellipses
         ::File.readlines file
       end
 
-      def where(symbol)
-        return ::File.exist?(symbol.path) ? symbol.path : nil if symbol.path
+      def root
+        @root ||= global.root ? ::File.join(directory, global.root) : directory
+      end
 
-        paths = [base = ::File.join(directory, symbol.to_s)]
+      def where(symbol)
+        return ::File.exist?(symbol.path) ? ::File.join(root, symbol.path) : nil if symbol.path
+
+        paths = [base = ::File.join(root, symbol.to_s)]
         paths.prepend("#{base}#{global.extension}") if global.extension
 
         paths.find { |path| ::File.exist?(path) }
