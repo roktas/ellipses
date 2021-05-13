@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
 
   s.homepage      = 'https://roktas.github.io/ellipses'
   s.files         = Dir['CHANGELOG.md', 'LICENSE.md', 'README.md', 'BENİOKU.md', 'ellipses.gemspec', 'lib/**/*']
-  s.bindir        = 'bin'
   s.executables   = Dir['bin/*']
   s.require_paths = ['lib']
 
