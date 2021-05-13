@@ -7,7 +7,7 @@ cd "$(dirname "$(readlink -f "$0")")"/../.. || exit
 export RUBYLIB="$PWD"/lib
 export PATH="$PWD"/bin:"$PATH"
 
-TESTROOT=$(readlink -f .local/tmp/t)
+TESTROOT=$(readlink -m .local/tmp/t)
 export TESTROOT
 
 .cry() {
