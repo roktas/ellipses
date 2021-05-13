@@ -10,6 +10,13 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/client/**/*.rb', 'test/server/**/*.rb']
 end
 
+task :test do
+  warn ''
+  warn 'Running integration tests'
+  warn ''
+  sh '.local/bin/test'
+end
+
 require 'rubygems/tasks'
 Gem::Tasks.new console: false do |tasks|
   tasks.push.host = ENV['RUBYGEMS_HOST'] || Gem::DEFAULT_HOST
