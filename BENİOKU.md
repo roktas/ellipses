@@ -12,7 +12,7 @@ Kullanım
 --------
 
 - Eklenecek kodları `SRCPATH` altında varolan dizinlerde topla.  Bu dizinlere "sunucu" ("server") dizinleri diyoruz.
-  Dizin düzeninin `«provider»/«owner»/«repo»` düzeninde olması tavsiye edilir.  Örneğin `SRCPATH=/usr/local/src` ise
+  Sunucu dizinlerin `«provider»/«owner»/«repo»` düzeninde olması tavsiye edilir.  Örneğin `SRCPATH=/usr/local/src` ise
   tüketilecek kabuk kaynaklarını `/usr/local/src/github.com/roktas/sh` dizininde toplayabilirsiniz.  Öncelikle `SRCPATH`
   ortam değişkeni anons edilir.
 
@@ -23,26 +23,26 @@ Kullanım
 - Sunucu dizinin kökünde servis edilecek sembolleri anons eden bir `src.toml` dosyası oluştur.  Örnekteki dizin için
   `/usr/local/src/github.com/roktas/sh/src.toml` dosyası aşağıdaki örnek içeriğe sahip olsun:
 
-  ```toml```
+  ```toml
   depends = [
-  	"z"
+        "z"
   ]
 
   [[symbols]]
-  	symbol  = "a"
-	depends = [
-		"b",
-		"c"
-	]
+        symbol  = "a"
+        depends = [
+                "b",
+                "c"
+        ]
 
   [[symbols]]
-  	symbol = "b"
+        symbol = "b"
 
   [[symbols]]
-  	symbol = "c"
+        symbol = "c"
 
   [[symbols]]
-  	symbol = "z"
+        symbol = "z"
   ```
 
   Bu yapılandırmada `z` sembolü bağımlılık olarak tüm sembollere eklenirken örneğin `a` sembolü buna ilave olarak `b` ve
@@ -58,7 +58,7 @@ Kullanım
 
   ```sh
   if true; then
-  	... github.com/roktas/sh a
+        ... github.com/roktas/sh a
   fi
   ```
 
@@ -81,10 +81,10 @@ Kullanım
 
   ```sh
   if true; then
-  	z
-	c
-	b
-	a
+        z
+        c
+        b
+        a
   fi
   ```
 
@@ -103,10 +103,10 @@ Kullanım
 
   ```sh
   if true; then
-  	z
-	c
-	B
-	a
+        z
+        c
+        B
+        a
   fi
   ```
 
@@ -120,7 +120,7 @@ Kullanım
 
   ```sh
   if true; then
-  	... github.com/roktas/sh a
+        ... github.com/roktas/sh a
   fi
   ```
 
