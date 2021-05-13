@@ -4,6 +4,8 @@ set -Eeuo pipefail; shopt -s nullglob; [[ -z ${TRACE:-} ]] || set -x; unset CDPA
 
 THIS="$(basename "${0##*/}" .t)"; readonly THIS
 
+unset SRCPATH ELLIPSES_PATH
+
 .cry() {
 	echo >&2 "$@"
 }
