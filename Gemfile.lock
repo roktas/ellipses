@@ -43,6 +43,13 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.5.0)
       parser (>= 3.0.1.1)
+    rubocop-minitest (0.12.1)
+      rubocop (>= 0.90, < 2.0)
+    rubocop-performance (1.11.3)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rake (0.5.1)
+      rubocop
     ruby-progressbar (1.11.0)
     rubygems-tasks (0.2.5)
       irb (~> 1.0)
@@ -59,10 +66,13 @@ DEPENDENCIES
   minitest-reporters (>= 1.4.3)
   rake
   rubocop
+  rubocop-minitest
+  rubocop-performance
+  rubocop-rake
   rubygems-tasks
 
 RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.16
+   2.2.17
