@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '~> 2.5.1'
+ruby File.read(File.expand_path('.ruby-version', __dir__))
 
 group :test do
   gem 'minitest-focus'
