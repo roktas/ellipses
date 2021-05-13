@@ -4,6 +4,9 @@ set -Eeuo pipefail; shopt -s nullglob; [[ -z ${TRACE:-} ]] || set -x; unset CDPA
 
 cd "$(dirname "$(readlink -f "$0")")"/../.. || exit
 
+export RUBYLIB="$PWD"/lib
+export PATH="$PWD"/bin:"$PATH"
+
 TESTROOT=$(readlink -f .local/tmp/t)
 export TESTROOT
 
