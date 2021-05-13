@@ -3,9 +3,8 @@
 module Ellipses
   module Client
     class Application
-      DEFAULTS = {
-        rootdir: "."
-      }.freeze
+      DEFAULT_ROOTDIR = "."
+      DEFAULT_PATHS   = [".", ENV["ELLIPSES_PATH"], ENV["SRCPATH"]].freeze
 
       attr_reader :config, :repository, :loader, :server
 
@@ -88,11 +87,15 @@ module Ellipses
       private
 
       def configure(**options)
-        config = OpenStruct.new DEFAULTS.merge(options)
+        config = OpenStruct.new options.compact
+
+        config.rootdir ||= DEFAULT_ROOTDIR
+        config.paths     = DEFAULT_PATHS.dup if !config.paths || config.paths.empty?
+
         yield(config) if block_given?
 
         config.rootdir = Support.dir!(config.rootdir, error: Error)
-        config.paths ||= %w[.] # FIXME: more robust
+        config.paths.compact!
 
         config
       end

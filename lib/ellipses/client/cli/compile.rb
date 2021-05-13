@@ -9,7 +9,7 @@ module Ellipses
 
           argument :file, type: :string, required: true, desc: "File to be compiled"
 
-          option :paths, type: :array, default: %w[.], desc: "Providers path"
+          option :paths, type: :array, default: [], desc: "Providers path"
 
           def call(file:, paths:)
             Application.compile!(file, paths: paths)
