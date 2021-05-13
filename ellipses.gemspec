@@ -30,8 +30,9 @@ Gem::Specification.new do |s|
   s.add_dependency 'tomlrb'
 
   s.add_development_dependency 'bundler'
-  s.add_development_dependency 'minitest-focus'
-  s.add_development_dependency 'minitest-reportes'
+  s.add_development_dependency 'minitest-focus', '>= 1.2.1'
+  s.add_development_dependency 'minitest-reporters', '>= 1.4.3'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'rubygems-tasks'
 end
