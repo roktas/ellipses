@@ -136,7 +136,11 @@ module Ellipses
       Pathname.new(path).cleanpath.expand_path.relative_path_from(base).to_s
     end
 
-    def update_file(file, lines)
+    def writelines(file, lines)
+      ::File.write(file, "#{[*lines].join.chomp}\n")
+    end
+
+    def updatelines(file, lines)
       old = ::File.exist?(file) ? ::File.read(file) : nil
       new = "#{[*lines].join.chomp}\n"
 
