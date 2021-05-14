@@ -66,7 +66,7 @@ module Ellipses
           n += 1
         end
 
-        n
+        n.positive?
       end
 
       def dump
