@@ -50,12 +50,10 @@ module Ellipses
       end
 
       def call
-        groups = Shellwords.split(preprocess(line)).slice_after("|").map do |group|
+        Shellwords.split(preprocess(line)).slice_after("|").map do |group|
           group.pop if group.last == "|"
-          group
+          Lexeme.from_strings(group)
         end
-
-        groups.map { |group| Lexeme.from_strings(group) }
       end
 
       private
