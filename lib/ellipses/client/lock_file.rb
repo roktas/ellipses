@@ -43,7 +43,7 @@ module Ellipses
       end
 
       def write(meta)
-        Support.update_file(lockfile, meta.empty? ? EMPTY : JSON.pretty_generate(meta))
+        Support.updatelines(lockfile, meta.empty? ? EMPTY : JSON.pretty_generate(meta))
       end
     end
   end

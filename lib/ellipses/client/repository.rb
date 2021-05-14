@@ -52,33 +52,18 @@ module Ellipses
         @files[key].registered
       end
 
-      def modified(all: true)
-        modified = []
+      def save(all: true)
+        n = 0
 
         @files.each_value do |file|
           next if !file.registered && !all
-          next if file.digest == Support.digest(*file.source.lines)
+          next if file.digest == (digest = Support.digest(*file.source.lines))
 
-          modified << file
-        end
+          Support.writelines(file.path, file.source.lines)
+          warn Support.notice(file.path)
 
-        modified
-      end
-
-      def save(all: true) # rubocop:disable Metrics/MethodLength
-        n = 0
-
-        modified(all: all).each do |file|
-          path, lines = file.path, file.source.lines
-
-          Support.update_file(path, lines) do |status|
-            next unless status
-
-            warn Support.notice(path)
-            n += 1
-          end
-
-          file.digest = Support.digest(*lines)
+          file.digest = digest
+          n += 1
         end
 
         n
