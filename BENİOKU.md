@@ -73,7 +73,7 @@ Kullanım
 - İstemci dosya derlenir ("compile").
 
   ```sh
-  src compile
+  src compile test.sh
   ```
 
   Bu işlemin sonucunda, örneğin `a`, `b`, `c`, ve `z` dosyaları basitçe aynı harfte tek satırlık içeriklerden oluşuyorsa
@@ -99,7 +99,8 @@ Kullanım
   src update
   ```
 
-  Örneğin `b` dosyasının içeriği `B` olarak değiştirilmişse `test.sh` dosyasının içerği şu olacaktır.
+  Bu komut tüm istemci dosyaları güncellediğinden dosya argümanı gerekmemektedir.  Örneğin `b` dosyasının içeriği `B`
+  olarak değiştirilmişse `test.sh` dosyasının içeriği şu olacaktır.
 
   ```sh
   if true; then
@@ -110,13 +111,13 @@ Kullanım
   fi
   ```
 
-- Derlenen bir dosyanın eksi haline getirilmesi için `decompile` komutu uygulanır.
+- Derlenen bir dosyanın eski haline getirilmesi için `decompile` komutu uygulanır.
 
   ```sh
   src decompile test.sh
   ```
 
-  Bu komut sonucunda `test.sh` dosyasının içeriği şu oalcaktır.
+  Komut sonucunda `test.sh` dosyasının içeriği şu olacaktır.
 
   ```sh
   if true; then
@@ -124,5 +125,5 @@ Kullanım
   fi
   ```
 
-  Yapılan eklemelerin içeriğine müdahale edilmediği sürece `test.sh` dosyasında yapılan tüm değişikliklerin korunacağını
-  not edin.
+  Yapılan eklemelerin içeriğine müdahale edilmediği sürece `test.sh` dosyasında yapılan tüm değişikliklerin
+  korunmaktadır.
