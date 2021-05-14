@@ -36,7 +36,7 @@ run() {
 		local err=0; (
 			pushd "$dir" &>/dev/null
 
-			.cry ">    $name" && ./"$name"
+			./"$name"
 		) || err=$?
 
 		if [[ $err -eq 0 ]]; then
