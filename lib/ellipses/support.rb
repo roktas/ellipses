@@ -63,12 +63,11 @@ module Ellipses
       NotDir        = Error.kind "Not a directory"
       NotExecutable = Error.kind "Not an executable"
 
-      attr_reader :path, :base, :fullpath, :relpath
+      attr_reader :path, :base, :fullpath
 
       def initialize(path:, base: nil)
         @path     = ::File.join(*path)
         @base     = ::File.join(*base) if base
-
         @fullpath = ::File.expand_path(@path, @base)
       end
 
