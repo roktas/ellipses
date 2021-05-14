@@ -40,6 +40,9 @@ Kullanım
 
   [[symbols]]
         symbol = "c"
+
+  [[symbols]]
+        symbol = "z"
   ```
 
   Bu yapılandırmada `z` sembolü bağımlılık olarak tüm sembollere eklenirken örneğin `a` sembolü buna ilave olarak `b` ve
