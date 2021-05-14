@@ -11,7 +11,7 @@ module Ellipses
       def initialize(repository: nil, loader: nil, server: nil, **options, &block)
         @config     = configure(**options, &block)
         @repository = repository || Repository.new(config.rootdir)
-        @loader     = loader     || LockFile.new(config.rootdir, config.lockfiles)
+        @loader     = loader     || MetaFile.new(config.rootdir, config.lockfiles)
         @server     = server     || Server::Application.new(config.paths)
       end
 

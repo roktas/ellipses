@@ -68,7 +68,7 @@ module Ellipses
       end
 
       def scan(name)
-        paths.map { |path| ::File.join(path, name) }.find { |path| SourceFile.valid?(path) }
+        paths.map { |path| ::File.join(path, name) }.find { |path| MetaFile.valid?(path) }
       end
 
       class << self

@@ -50,8 +50,8 @@ module Ellipses
 
       class << self
         def load(directory)
-          meta = (source_file = SourceFile.new(directory)).read
-          new symbols: Symbols.new(meta.symbols), global: meta.global, directory: source_file.directory
+          meta = (meta_file = MetaFile.new(directory)).read
+          new symbols: Symbols.new(meta.symbols), global: meta.global, directory: meta_file.directory
         end
       end
     end

@@ -4,7 +4,7 @@ require "tomlrb"
 
 module Ellipses
   module Server
-    class SourceFile
+    class MetaFile
       FILE = "src.toml"
 
       Error = Class.new(Error)
@@ -13,17 +13,17 @@ module Ellipses
 
       def initialize(directory)
         @directory = Support.dir!(directory, error: Error)
-        @srcfile   = Support.file!(FILE, base: @directory, error: Error)
+        @file      = Support.file!(FILE, base: @directory, error: Error)
       end
 
       def to_s
-        @srcfile
+        @file
       end
 
       def read
-        Meta.new Tomlrb.load_file(@srcfile)
+        Meta.new Tomlrb.load_file(@file)
       rescue StandardError => e
-        raise Error, "Error while loading meta file: #{srcfile}: #{e.message}"
+        raise Error, "Error while loading meta file: #{file}: #{e.message}"
       end
 
       class << self
