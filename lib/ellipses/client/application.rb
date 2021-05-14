@@ -10,10 +10,9 @@ module Ellipses
 
       def initialize(repository: nil, loader: nil, server: nil, **options, &block)
         @config     = configure(**options, &block)
-
         @repository = repository || Repository.new(config.rootdir)
-        @loader     = loader || LockFile.new(config.rootdir, config.lockfiles)
-        @server     = server || Server::Application.new(config.paths)
+        @loader     = loader     || LockFile.new(config.rootdir, config.lockfiles)
+        @server     = server     || Server::Application.new(config.paths)
       end
 
       def rootdir
@@ -33,11 +32,7 @@ module Ellipses
       end
 
       def shutdown
-        if repository.save.zero?
-          warn
-          warn Support.warning "No source changed"
-          warn
-        end
+        warn Support.warning "No source changed" if repository.save.zero?
 
         loader.write(dump) and warn Support.info("Updated lock file")
       end
@@ -87,16 +82,18 @@ module Ellipses
       private
 
       def configure(**options)
-        config = OpenStruct.new options.compact
+        return (config = sanitize(OpenStruct.new(options.compact))) unless block_given?
 
+        yield(config)
+
+        sanitize(config)
+      end
+
+      def sanitize(config)
         config.rootdir ||= DEFAULT_ROOTDIR
+        config.rootdir   = Support.dir!(config.rootdir, error: Error)
         config.paths     = DEFAULT_PATHS.dup if !config.paths || config.paths.empty?
-
-        yield(config) if block_given?
-
-        config.rootdir = Support.dir!(config.rootdir, error: Error)
         config.paths.compact!
-
         config
       end
 

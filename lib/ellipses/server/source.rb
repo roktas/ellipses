@@ -15,16 +15,16 @@ module Ellipses
       end
 
       def [](string)
-        chunks = []
-        symbols.resolve(string).each do |symbol|
-          next if @consumed.include? symbol
+        [].tap do |chunks|
+          symbols.resolve(string).each do |symbol|
+            next if @consumed.include? symbol
 
-          @consumed << symbol
-          next if (lines = payload(symbol)).empty?
+            @consumed << symbol
+            next if (lines = payload(symbol)).empty?
 
-          chunks << lines
+            chunks << lines
+          end
         end
-        chunks
       end
 
       private
