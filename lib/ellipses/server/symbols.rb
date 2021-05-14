@@ -18,7 +18,8 @@ module Ellipses
         def build(symbols)
           return if @meta.depends.nil?
 
-          @meta.depends.uniq.each { |depend| depends << symbols.register(depend) }
+          # To avoid a circular reference, skip dependency if it is this symbol
+          @meta.depends.uniq.reject { |depend| depend == to_s }.each { |depend| depends << symbols.register(depend) }
         end
 
         def to_s
