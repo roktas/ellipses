@@ -10,15 +10,13 @@ end
 desc "Lint code"
 task lint: :rubocop
 
-task test: :lint # rubocop:disable Rake/Desc
-
 require "rake/testtask"
 Rake::TestTask.new do |t|
   t.libs.push "test"
   t.test_files = FileList["test/client/**/*.rb", "test/server/**/*.rb"]
 end
 
-task :test do # rubocop:disable Rake/DuplicateTask, Rake/Desc
+task :test do # rubocop:disable Rake/Desc
   warn ""
   warn "Running integration tests"
   warn ""
@@ -50,7 +48,7 @@ task :bump do
   exit
 end
 
-task default: :test
+task default: %i[lint test]
 
 class Bumper
   Version = Struct.new :major, :minor, :patch, :pre do
