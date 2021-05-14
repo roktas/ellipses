@@ -40,14 +40,11 @@ Kullanım
 
   [[symbols]]
         symbol = "c"
-
-  [[symbols]]
-        symbol = "z"
   ```
 
   Bu yapılandırmada `z` sembolü bağımlılık olarak tüm sembollere eklenirken örneğin `a` sembolü buna ilave olarak `b` ve
-  `c` sembollerini çekecektir.  Sonuç olarak sunucudan `a` sembolü istendiğinde sırasıyla `z`, `b`, `c` sembolleri
-  çekilecektir.
+  `c` sembollerini çekecektir.  Sonuç olarak sunucudan `a` sembolü istendiğinde bağımlılık olarak sırasıyla `z`, `b`,
+  `c` sembolleri çekilecektir.
 
   Her sembol sunucu dizinde aynı isimde bir dosyaya karşılık gelir.  "Yaprak" niteliğinde sembollerde sembol ile aynı
   isimde dosyanın varlığı zorunlu, diğerlerinde ise zorunlu değildir.  Dolayısıyla yukarıdaki örnek `a` sembolü için
@@ -82,8 +79,11 @@ Kullanım
   ```sh
   if true; then
         z
-        c
+
         b
+
+        c
+
         a
   fi
   ```
@@ -105,8 +105,11 @@ Kullanım
   ```sh
   if true; then
         z
-        c
+
         B
+
+        c
+
         a
   fi
   ```
