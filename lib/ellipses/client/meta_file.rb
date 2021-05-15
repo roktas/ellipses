@@ -5,8 +5,7 @@ require "json"
 module Ellipses
   module Client
     class MetaFile
-      ALTERNATIVES = %w[.local/var/src.lock src.lock .src.lock].freeze
-      EMPTY        = "[]\n"
+      EMPTY  = "[]\n"
 
       attr_reader :directory, :alternatives
 

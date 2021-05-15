@@ -3,12 +3,10 @@
 module Ellipses
   module Client
     class Application
-      DEFAULT_ROOTDIR = "."
-
       attr_reader :config, :repository, :loader, :server
 
-      def initialize(repository: nil, loader: nil, server: nil, **options, &block)
-        @config     = configure(**options, &block)
+      def initialize(repository: nil, loader: nil, server: nil, **options)
+        @config     = Config.new(**options)
         @repository = repository || Repository.new(config.rootdir)
         @loader     = loader     || MetaFile.new(config.rootdir, config.lockfiles)
         @server     = server     || Server::Application.new(config.paths)
@@ -76,31 +74,6 @@ module Ellipses
 
       def dump
         repository.dump
-      end
-
-      private
-
-      def configure(**options)
-        return (config = sanitize(OpenStruct.new(options.compact))) unless block_given?
-
-        yield(config)
-
-        sanitize(config)
-      end
-
-      def default_paths
-        environment = %w[ELLIPSES_PATH SRCPATH].find { |env| ENV.key? env }
-        paths       = environment ? ENV[environment].split(":") : []
-
-        [".", *paths]
-      end
-
-      def sanitize(config)
-        config.rootdir = Support.dir!(config.rootdir || DEFAULT_ROOTDIR, error: Error)
-        config.paths   = default_paths if !config.paths || config.paths.empty?
-        config.paths.compact!
-
-        config
       end
 
       class << self

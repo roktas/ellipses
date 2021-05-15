@@ -11,6 +11,7 @@ require_relative "client/source"
 require_relative "client/meta"
 require_relative "client/meta_file"
 require_relative "client/repository"
+require_relative "client/config"
 require_relative "client/application"
 
 require_relative "client/commands"
