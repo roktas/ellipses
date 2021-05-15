@@ -5,7 +5,7 @@ require "json"
 module Ellipses
   module Client
     class MetaFile
-      EMPTY  = "[]\n"
+      EMPTY = "[]\n"
 
       attr_reader :directory, :alternatives
 
