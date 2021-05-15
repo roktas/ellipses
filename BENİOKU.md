@@ -21,7 +21,7 @@ Kullanım
   export SRCPATH=/usr/local/src
   ```
 
-- Sunucu dizin kökünde servis edilecek sembolleri bildiren eden bir `src.toml` dosyası oluştur.  Örnekteki dizin için
+- Sunucu dizin kökünde servis edilecek sembolleri bildiren bir `src.toml` dosyası oluştur.  Örnekteki dizin için
   `/usr/local/src/github.com/roktas/sh/src.toml` dosyası aşağıdaki örnek içerikte olsun.
 
   ```toml
@@ -123,7 +123,8 @@ Kullanım
   src decompile test.sh
   ```
 
-  Komut sonucunda `test.sh` dosyasının içeriği aşağıdaki gibi olacaktır.
+  Komut sonucunda `test.sh` dosyasının içeriği (dosyada başka bir düzenleme yapılmadığı varsayımıyla) aşağıdaki gibi
+  olacaktır.
 
   ```sh
   if true; then
