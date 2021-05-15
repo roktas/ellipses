@@ -4,9 +4,9 @@ Ellipses
 [![test](https://github.com/roktas/ellipses/actions/workflows/test.yml/badge.svg)](https://github.com/roktas/ellipses/actions/workflows/test.yml)
 [![codebeat badge](https://codebeat.co/badges/fe709527-2a06-40ed-b6af-517907bdc75e)](https://codebeat.co/projects/github-com-roktas-ellipses-master)
 
-Static code reusing tool
+Static code reusing tool (**WARNING:** This software is a pre-release that is still in development)
 
-**WARNING:** This is a pre-alpha release, development only, non-production code.
+Statik olarak yeniden kod kullanımı için bir araç (**UYARI:** Bu yazılım geliştirme halen devam eden bir ön sürümdür)
 
 Kullanım
 --------
@@ -15,7 +15,6 @@ Kullanım
   dizinleri diyoruz.  Sunucu dizinlerin `«provider»/«owner»/«repo»` düzeninde olması tavsiye edilir.  Örneğin
   `SRCPATH=/usr/local/src` ise tüketilecek kabuk kaynaklarını `/usr/local/src/github.com/roktas/sh` dizininde
   toplayabilirsin.
-
 
   ```sh
   export SRCPATH=/usr/local/src
