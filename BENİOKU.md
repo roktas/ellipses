@@ -6,7 +6,7 @@ Ellipses
 
 Static code reusing tool (**WARNING:** This software is a pre-release that is still in development)
 
-Statik olarak yeniden kod kullanımı için bir araç (**UYARI:** Bu yazılım geliştirme halen devam eden bir ön sürümdür)
+Statik olarak yeniden kod kullanımı için bir araç (**UYARI:** Bu yazılım, geliştirmesi halen devam eden bir ön sürümdür)
 
 Kullanım
 --------
