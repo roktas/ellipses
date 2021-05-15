@@ -4,7 +4,6 @@ module Ellipses
   module Client
     class Application
       DEFAULT_ROOTDIR = "."
-      DEFAULT_PATHS   = [".", ENV["ELLIPSES_PATH"], ENV["SRCPATH"]].freeze
 
       attr_reader :config, :repository, :loader, :server
 
@@ -89,11 +88,18 @@ module Ellipses
         sanitize(config)
       end
 
+      def default_paths
+        environment = %w[ELLIPSES_PATH SRCPATH].find { |env| ENV.key? env }
+        paths       = environment ? ENV[environment].split(":") : []
+
+        [".", *paths]
+      end
+
       def sanitize(config)
-        config.rootdir ||= DEFAULT_ROOTDIR
-        config.rootdir   = Support.dir!(config.rootdir, error: Error)
-        config.paths     = DEFAULT_PATHS.dup if !config.paths || config.paths.empty?
+        config.rootdir = Support.dir!(config.rootdir || DEFAULT_ROOTDIR, error: Error)
+        config.paths   = default_paths if !config.paths || config.paths.empty?
         config.paths.compact!
+
         config
       end
 
