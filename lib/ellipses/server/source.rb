@@ -5,13 +5,13 @@ require "set"
 module Ellipses
   module Server
     class Source
-      attr_reader :symbols, :global, :directory
+      attr_reader :symbols, :global, :root
 
-      def initialize(symbols:, global:, directory:, consumed: [])
+      def initialize(symbols:, global:, directory:)
         @symbols   = symbols
         @global    = global
-        @directory = directory
-        @consumed  = Set.new consumed
+        @root      = global.root ? ::File.join(directory, global.root) : directory
+        @consumed  = Set.new
       end
 
       def [](string)
@@ -29,10 +29,6 @@ module Ellipses
         return if (lines = symbol.payload(root, global.extension)).empty?
 
         chunks << lines
-      end
-
-      def root
-        @root ||= global.root ? ::File.join(directory, global.root) : directory
       end
 
       class << self
