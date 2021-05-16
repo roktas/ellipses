@@ -6,13 +6,10 @@ module Ellipses
       module Struct
         refine ::Struct.singleton_class do
           def from_hash_without_bogus_keys!(hash, error:)
-            hash  = hash.transform_keys(&:to_sym)
-            clean = hash.slice(*members)
-            bogus = hash.keys.reject { |key| members.include?(key) }
-
+            bogus = (hash = hash.transform_keys(&:to_sym)).keys.reject { |key| members.include?(key) }
             raise error, "Bogus keys found: #{bogus}" unless bogus.empty?
 
-            new clean
+            new hash.slice(*members)
           end
         end
       end
