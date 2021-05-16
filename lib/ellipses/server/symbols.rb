@@ -30,6 +30,23 @@ module Ellipses
           @path ||= @meta.path
         end
 
+        def payload(rootdir, extension = nil)
+          return [] unless (file = where(rootdir, extension)) && !::File.directory?(file)
+
+          ::File.readlines file
+        end
+
+        private
+
+        def where(rootdir, extension = nil)
+          return ::File.exist?(path) ? ::File.join(rootdir, path) : nil if path
+
+          paths = [base = ::File.join(rootdir, to_s)]
+          paths.prepend("#{base}#{extension}") if extension
+
+          paths.find { |path| ::File.exist?(path) }
+        end
+
         class << self
           def from_string(string)
             new Meta::Symbol.from_hash symbol: string

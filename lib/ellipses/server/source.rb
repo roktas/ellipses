@@ -20,7 +20,7 @@ module Ellipses
             next if @consumed.include? symbol
 
             @consumed << symbol
-            next if (lines = payload(symbol)).empty?
+            next if (lines = symbol.payload(root, global.extension)).empty?
 
             chunks << lines
           end
@@ -29,23 +29,8 @@ module Ellipses
 
       private
 
-      def payload(symbol)
-        return [] unless (file = where(symbol)) && !::File.directory?(file)
-
-        ::File.readlines file
-      end
-
       def root
         @root ||= global.root ? ::File.join(directory, global.root) : directory
-      end
-
-      def where(symbol)
-        return ::File.exist?(symbol.path) ? ::File.join(root, symbol.path) : nil if symbol.path
-
-        paths = [base = ::File.join(root, symbol.to_s)]
-        paths.prepend("#{base}#{global.extension}") if global.extension
-
-        paths.find { |path| ::File.exist?(path) }
       end
 
       class << self
