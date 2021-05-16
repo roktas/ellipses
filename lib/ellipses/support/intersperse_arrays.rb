@@ -5,10 +5,10 @@ module Ellipses
     module_function
 
     def intersperse_arrays(arrays, intersperse)
-      interspersed = []
-      arrays.each { |array| interspersed.append(array, intersperse) }
-      interspersed.pop
-      interspersed
+      [].tap do |interspersed|
+        arrays.each { |array| interspersed.append(array, intersperse) }
+        interspersed.pop
+      end
     end
   end
 end
