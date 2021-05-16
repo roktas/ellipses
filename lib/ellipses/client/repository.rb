@@ -38,9 +38,7 @@ module Ellipses
       end
 
       def register(path, *args, **kwargs)
-        if @files.key?(key = memo(path))
-          return @files[key].tap { |file| file.registered = true }.source
-        end
+        return @files[key].tap { |file| file.registered = true }.source if @files.key?(key = memo(path))
 
         source = Source.from_file(key, *args, **kwargs)
         file = @files[key] = File.new path:       key,
