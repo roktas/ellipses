@@ -127,17 +127,7 @@ module Ellipses
       private
 
       def index_of_maximum_entropy
-        each_index.max_by { |i| entropy(self[i]) }
-      end
-
-      # https://rosettacode.org/wiki/Entropy#Ruby
-      def entropy(string)
-        string
-          .each_char
-          .group_by(&:to_s)
-          .values
-          .map { |x| x.length / string.length.to_f }
-          .reduce(0) { |e, x| e - x * Math.log2(x) }
+        each_index.max_by { |i| Support.entropy(self[i]) }
       end
 
       def substitute_at(index, *lines)

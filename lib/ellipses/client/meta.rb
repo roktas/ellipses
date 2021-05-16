@@ -7,7 +7,7 @@ module Ellipses
     class Meta < SimpleDelegator
       Error = Class.new Error
 
-      using Support::Struct
+      using Support::Refinements::Struct
 
       Source = Struct.new :source, :series, keyword_init: true do
         def to_json(*args)
