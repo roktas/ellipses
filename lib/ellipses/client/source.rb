@@ -17,7 +17,7 @@ module Ellipses
       end
 
       def decompile
-        return if !series || series.empty?
+        return if series.empty?
 
         while (lock = series.shift)
           lines.substitute_uniq_like_chunk!(lock.insertion, lock.directive)
@@ -28,12 +28,7 @@ module Ellipses
         new_lines = Lines[]
 
         lines.each do |line|
-          next new_lines.append(line) unless Parser.match? line
-
-          result = execute(line, server)
-
-          series << Meta::Lock.new(directive: line, insertion: result.insertion_by_entropy)
-          new_lines.append(*result)
+          new_lines.append(*(Parser.match?(line) ? execute_and_record(line, server) : line))
         end
 
         @lines = new_lines
@@ -55,6 +50,12 @@ module Ellipses
         outlines.map! { |outline| Support.prefix_non_blank(outline, parsed.prefix, excludes: "\f\f\f") }
 
         Lines[outlines]
+      end
+
+      def execute_and_record(line, server, **kwargs)
+        result = execute(line, server, **kwargs)
+        series << Meta::Lock.new(directive: line, insertion: result.insertion_by_entropy)
+        result
       end
 
       class << self
