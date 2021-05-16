@@ -15,19 +15,21 @@ module Ellipses
       end
 
       def [](string)
-        [].tap do |chunks|
-          symbols.resolve(string).each do |symbol|
-            next if @consumed.include? symbol
-
-            @consumed << symbol
-            next if (lines = symbol.payload(root, global.extension)).empty?
-
-            chunks << lines
-          end
+        (chunks = []).tap do
+          symbols.resolve(string).each { |symbol| yield_symbol(chunks, symbol) }
         end
       end
 
       private
+
+      def yield_symbol(chunks, symbol)
+        return if @consumed.include? symbol
+
+        @consumed << symbol
+        return if (lines = symbol.payload(root, global.extension)).empty?
+
+        chunks << lines
+      end
 
       def root
         @root ||= global.root ? ::File.join(directory, global.root) : directory
