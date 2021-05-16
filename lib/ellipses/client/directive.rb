@@ -27,9 +27,9 @@ module Ellipses
           name = lexeme.token
 
           raise Error, "No such command available: #{name}" unless Commands.available?(name)
-          unless (proto = Commands.proto(name)).valid?(lexeme.argv)
-            raise Error, "Wrong number of arguments: #{lexeme.argv}"
-          end
+
+          proto = Commands.proto(name)
+          raise Error, "Wrong number of arguments: #{lexeme.argv}" unless proto.valid?(lexeme.argv)
 
           proto.klass.new(lexeme.argv, server)
         end
