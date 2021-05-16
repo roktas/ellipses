@@ -3,7 +3,17 @@
 module Ellipses
   module Client
     class Repository
-      File = Struct.new :path, :source, :digest, :registered, keyword_init: true
+      File = Struct.new :path, :source, :digest, :registered, keyword_init: true do
+        def save(all: true)
+          return if !registered && !all
+          return if digest == (new_digest = Support.digest(*source.lines))
+
+          Support.writelines(path, source.lines)
+          warn Support.notice(path)
+
+          self.digest = new_digest
+        end
+      end
 
       private_constant :File
 
@@ -55,16 +65,7 @@ module Ellipses
       def save(all: true)
         n = 0
 
-        @files.each_value do |file|
-          next if !file.registered && !all
-          next if file.digest == (digest = Support.digest(*file.source.lines))
-
-          Support.writelines(file.path, file.source.lines)
-          warn Support.notice(file.path)
-
-          file.digest = digest
-          n += 1
-        end
+        @files.each_value { |file| file.save(all: all) and (n += 1) }
 
         n.positive?
       end
