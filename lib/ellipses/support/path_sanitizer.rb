@@ -19,12 +19,12 @@ module Ellipses
         end
       end
 
-      MissingBase   = Error.kind "Directory not found"
-      WrongBase     = Error.kind "Not a directory"
-      MissingPath   = Error.kind "File or directory not found"
-      NotFile       = Error.kind "Not a file"
-      NotDir        = Error.kind "Not a directory"
-      NotExecutable = Error.kind "Not an executable"
+      MissingBase   = Error.kind 'Directory not found'
+      WrongBase     = Error.kind 'Not a directory'
+      MissingPath   = Error.kind 'File or directory not found'
+      NotFile       = Error.kind 'Not a file'
+      NotDir        = Error.kind 'Not a directory'
+      NotExecutable = Error.kind 'Not an executable'
 
       attr_reader :path, :base, :fullpath
 

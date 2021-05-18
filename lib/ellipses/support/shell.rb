@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "open3"
+require 'open3'
 
 module Ellipses
   module Support
@@ -19,7 +19,7 @@ module Ellipses
         end
 
         def cmd
-          args.join " "
+          args.join ' '
         end
       end
 
@@ -43,7 +43,7 @@ module Ellipses
 
         def block(stdout, stderr, wait_thread)
           # Handle `^C`
-          trap("INT") { handle_sigint(wait_thread.pid) }
+          trap('INT') { handle_sigint(wait_thread.pid) }
 
           out = stdout.readlines.map(&:chomp)
           err = stderr.readlines.map(&:chomp)
@@ -53,9 +53,9 @@ module Ellipses
 
         def handle_sigint(pid) # rubocop:disable Metrics/MethodLength
           message, signal = if @coathooks > 1
-                              ["SIGINT received again. Force quitting...", "KILL"]
+                              ['SIGINT received again. Force quitting...', 'KILL']
                             else
-                              ["SIGINT received.", "TERM"]
+                              ['SIGINT received.', 'TERM']
                             end
 
           warn
@@ -63,7 +63,7 @@ module Ellipses
           ::Process.kill signal, pid
           @coathooks += 1
         rescue Errno::ESRCH
-          warn "No process to kill."
+          warn 'No process to kill.'
         end
       end
 

@@ -4,11 +4,11 @@ module Ellipses
   module Client
     module Commands
       class Include < Command
-        command "include", argc: (1..)
+        command 'include', argc: (1..)
 
         def setup
           uri, *param.symbols = argv
-          param.source, param.port = uri.split(":")
+          param.source, param.port = uri.split(':')
 
           server.available!(param.source)
         end

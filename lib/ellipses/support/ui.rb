@@ -35,19 +35,19 @@ module Ellipses
     module_function
 
     def notice(string)
-      "#{Color.bold Color.green "✓"}  #{string}"
+      "#{Color.bold Color.green '✓'}  #{string}"
     end
 
     def info(string)
-      "#{Color.bold Color.green "✓"}  #{Color.dim string}"
+      "#{Color.bold Color.green '✓'}  #{Color.dim string}"
     end
 
     def error(string)
-      "#{Color.bold Color.red "✗"}  #{string}"
+      "#{Color.bold Color.red '✗'}  #{string}"
     end
 
     def warning(string)
-      "#{Color.bold Color.yellow "!"}  #{string}"
+      "#{Color.bold Color.yellow '!'}  #{string}"
     end
   end
 end

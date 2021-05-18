@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shellwords"
+require 'shellwords'
 
 module Ellipses
   module Client
@@ -50,8 +50,8 @@ module Ellipses
       end
 
       def call
-        Shellwords.split(preprocess(line)).slice_after("|").map do |group|
-          group.pop if group.last == "|"
+        Shellwords.split(preprocess(line)).slice_after('|').map do |group|
+          group.pop if group.last == '|'
           Lexeme.from_strings(group)
         end
       end
@@ -59,8 +59,8 @@ module Ellipses
       private
 
       SUBSTITUTIONS = {
-        /^[.]{3,}/ => "include",
-        /^>{3,}/   => ""
+        /^[.]{3,}/ => 'include',
+        /^>{3,}/   => ''
       }.freeze
 
       def preprocess(rawline)

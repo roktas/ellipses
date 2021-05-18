@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require_relative "../test_helper"
+require_relative '../test_helper'
 
 module Ellipses
   module Server
     class SymbolsTest < Minitest::Test
       def test_circular_reference
         hash = {
-          "symbols" => [
+          'symbols' => [
             {
-              "symbol"  => "a",
-              "depends" => %w[b c]
+              'symbol'  => 'a',
+              'depends' => %w[b c]
             },
             {
-              "symbol" => "b"
+              'symbol' => 'b'
             },
             {
-              "symbol"  => "c",
-              "depends" => %w[a]
+              'symbol'  => 'c',
+              'depends' => %w[a]
             }
           ]
         }

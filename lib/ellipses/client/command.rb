@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "ostruct"
+require 'ostruct'
 
 module Ellipses
   module Client

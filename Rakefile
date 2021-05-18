@@ -1,43 +1,43 @@
 # frozen_string_literal: true
 
-require "rake/clean"
+require 'rake/clean'
 
-require "rubocop/rake_task"
+require 'rubocop/rake_task'
 RuboCop::RakeTask.new(:rubocop) do |t|
-  t.options = ["--display-cop-names"]
+  t.options = ['--display-cop-names']
 end
 
-desc "Lint code"
+desc 'Lint code'
 task lint: :rubocop
 
-require "rake/testtask"
+require 'rake/testtask'
 Rake::TestTask.new do |t|
-  t.libs.push "test"
-  t.test_files = FileList["test/client/**/*.rb", "test/server/**/*.rb"]
+  t.libs.push 'test'
+  t.test_files = FileList['test/client/**/*.rb', 'test/server/**/*.rb']
 end
 
 task :test do # rubocop:disable Rake/Desc
-  warn ""
-  warn "Running integration tests"
-  warn ""
-  sh ".local/bin/test"
+  warn ''
+  warn 'Running integration tests'
+  warn ''
+  sh '.local/bin/test'
 end
 
-require "rubygems/tasks"
+require 'rubygems/tasks'
 Gem::Tasks.new console: false do |tasks|
-  tasks.push.host = ENV["RUBYGEMS_HOST"] || Gem::DEFAULT_HOST
+  tasks.push.host = ENV['RUBYGEMS_HOST'] || Gem::DEFAULT_HOST
 end
 
-CLEAN.include("*.gem", "pkg")
+CLEAN.include('*.gem', 'pkg')
 
-if Dir.exist? "man"
-  desc "Generate manual pages"
+if Dir.exist? 'man'
+  desc 'Generate manual pages'
   task :man do
-    sh "cd man/tr && ronn *.ronn" if Dir.exist? "man/tr"
-    sh "cd man/en && ronn *.ronn" if Dir.exist? "man/en"
+    sh 'cd man/tr && ronn *.ronn' if Dir.exist? 'man/tr'
+    sh 'cd man/en && ronn *.ronn' if Dir.exist? 'man/en'
   end
-  CLEAN.include("man/**/*[0-9].html")
-  CLOBBER.include("man/**/*.[0-9]")
+  CLEAN.include('man/**/*[0-9].html')
+  CLOBBER.include('man/**/*.[0-9]')
 else
   task :man  # rubocop:disable Rake/DuplicateTask
 end
@@ -53,7 +53,7 @@ task default: %i[lint test]
 class Bumper
   Version = Struct.new :major, :minor, :patch, :pre do
     def to_s
-      [major, minor, patch].join(".") + (pre ? ".#{pre}" : "")
+      [major, minor, patch].join('.') + (pre ? ".#{pre}" : '')
     end
 
     def newer?(other)
@@ -63,19 +63,19 @@ class Bumper
     end
 
     def self.parse(string)
-      new(*string.strip.gsub(/^v?/, "").split(".", 4))
+      new(*string.strip.gsub(/^v?/, '').split('.', 4))
     end
 
     private_class_method :new
   end
 
-  def self.bump(arg, version_file = "VERSION")
+  def self.bump(arg, version_file = 'VERSION')
     new(version_file).bump(arg)
   end
 
   attr_reader :latest, :current
 
-  def initialize(version_file = "VERSION")
+  def initialize(version_file = 'VERSION')
     git_ensure_clean
 
     @version_file = version_file
@@ -94,7 +94,7 @@ class Bumper
   attr_writer :current
 
   def new_version(arg = nil)
-    return bump_by_auto if !arg || arg == "auto"
+    return bump_by_auto if !arg || arg == 'auto'
 
     if %i[major minor patch pre].include? arg.to_sym
       bump_by_part(arg)
@@ -122,12 +122,12 @@ class Bumper
     content.gsub!(/^(\s*)VERSION(\s*)= .*?$/, "\\1VERSION = '#{version}'")
     raise "Could not insert VERSION in #{file}" unless Regexp.last_match
 
-    File.open(file, "w") { |f| f.write content }
+    File.open(file, 'w') { |f| f.write content }
   end
 
   def update_ruby_sources
     updated = []
-    FileList["**/version.rb"].each do |file|
+    FileList['**/version.rb'].each do |file|
       warn "Updating #{file} for the new version: #{current}"
       write_version(file, current.to_s)
       updated << file
@@ -151,17 +151,17 @@ class Bumper
 
   def git_latest_tag
     tag = `git describe --abbrev=0 --tags 2>/dev/null`
-    warn "No tag found; make a release first." unless tag
+    warn 'No tag found; make a release first.' unless tag
     tag
   end
 
   def git_commit(message, *files)
-    system("git", "commit", "-m", message, *files) || abort("Git commit failed")
+    system('git', 'commit', '-m', message, *files) || abort('Git commit failed')
   end
 
   def git_ensure_clean
     return if `git status --untracked-files=no --porcelain`.strip.empty?
 
-    abort "There are uncommitted changes in the repository."
+    abort 'There are uncommitted changes in the repository.'
   end
 end

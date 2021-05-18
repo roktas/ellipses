@@ -62,7 +62,7 @@ module Ellipses
 
       def setup_paths(paths)
         paths = paths.filter_map { |path| Support.dir(path) }.uniq
-        raise Error, "No valid path found" if paths.empty?
+        raise Error, 'No valid path found' if paths.empty?
 
         paths
       end
@@ -73,11 +73,11 @@ module Ellipses
 
       class << self
         def dump(path, *symbols, **kwargs)
-          new([Support.dir!(path, error: Error)], **kwargs).dump(name: ".", symbols: symbols)
+          new([Support.dir!(path, error: Error)], **kwargs).dump(name: '.', symbols: symbols)
         end
 
         def validate(path, **kwargs)
-          new([Support.dir!(path, error: Error)], **kwargs).validate(".")
+          new([Support.dir!(path, error: Error)], **kwargs).validate('.')
         end
       end
     end

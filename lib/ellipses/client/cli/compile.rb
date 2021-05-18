@@ -5,11 +5,11 @@ module Ellipses
     module CLI
       module Commands
         class Compile < Dry::CLI::Command
-          desc "Compile file"
+          desc 'Compile file'
 
-          argument :file, type: :string, required: true, desc: "File to be compiled"
+          argument :file, type: :string, required: true, desc: 'File to be compiled'
 
-          option :paths, type: :array, default: [], desc: "Providers path"
+          option :paths, type: :array, default: [], desc: 'Providers path'
 
           def call(file:, paths:)
             Application.compile!(file, paths: paths)

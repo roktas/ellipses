@@ -4,7 +4,7 @@ module Ellipses
   module Client
     module Commands
       class Select < Command
-        command "select", argc: 1
+        command 'select', argc: 1
 
         include Command::Mixins::SetupPattern
 

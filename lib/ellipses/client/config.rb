@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require "forwardable"
+require 'forwardable'
 
 module Ellipses
   module Client
     class Config
-      DEFAULT_ROOTDIR   = "."
+      DEFAULT_ROOTDIR   = '.'
       DEFAULT_LOCKFILES = %w[.local/var/src.lock src.lock .src.lock].freeze
 
       extend Forwardable
@@ -20,9 +20,9 @@ module Ellipses
 
       def default_paths
         environment = %w[ELLIPSES_PATH SRCPATH].find { |env| ENV.key? env }
-        paths       = environment ? ENV[environment].split(":") : []
+        paths       = environment ? ENV[environment].split(':') : []
 
-        [".", *paths]
+        ['.', *paths]
       end
 
       def build(config)

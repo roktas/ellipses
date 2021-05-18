@@ -23,15 +23,15 @@ module Ellipses
       end
 
       def init!
-        raise Error, "Must be initialized" unless loader.exist?
+        raise Error, 'Must be initialized' unless loader.exist?
 
         init
       end
 
       def shutdown
-        warn Support.warning "No source changed" unless repository.save
+        warn Support.warning 'No source changed' unless repository.save
 
-        loader.write(dump) and warn Support.info("Updated lock file")
+        loader.write(dump) and warn Support.info('Updated lock file')
       end
 
       def compile(file)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "ellipses/server"
+require 'ellipses/server'
 
 module Ellipses
   module Client

@@ -15,7 +15,6 @@ Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
 
-
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: optional
 Naming/MethodParameterName:
@@ -34,13 +33,6 @@ Style/Lambda:
   Enabled: false
 Style/LambdaCall:
   Enabled: false
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
-  ConsistentQuotesInMultiline: false
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
 Style/ParallelAssignment:
   Enabled: false
 

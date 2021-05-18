@@ -4,7 +4,7 @@ module Ellipses
   module Client
     module Commands
       class Translate < Command
-        command "tr", argc: 2
+        command 'tr', argc: 2
 
         def call(input)
           input.map { |line| line.tr(*argv) }
