@@ -29,7 +29,7 @@ module Ellipses
       end
 
       def shutdown
-        warn Support.warning 'No source changed' unless repository.save
+        warn Support.warning 'Nothing changed' unless repository.save
 
         loader.write(dump) and warn Support.info('Updated lock file')
       end
