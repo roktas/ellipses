@@ -16,7 +16,7 @@ module Ellipses
         white   15
         yellow  11
       ].each_slice(2) do |color, code|
-        singleton_class.send(:define_method, color) { |string| "\e[38;5;#{code}m#{string}\e[0m" }
+        singleton_class.public_send(:define_method, color) { |string| "\e[38;5;#{code}m#{string}\e[0m" }
       end
 
       %w[
@@ -27,7 +27,7 @@ module Ellipses
         reverse    7
         hidden     8
       ].each_slice(2) do |attr, code|
-        singleton_class.send(:define_method, attr) { |string| "\e[#{code}m#{string}\e[0m" }
+        singleton_class.public_send(:define_method, attr) { |string| "\e[#{code}m#{string}\e[0m" }
       end
       # rubocop:enable Layout/SpaceInsideArrayPercentLiteral
     end
