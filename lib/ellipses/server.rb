@@ -8,8 +8,3 @@ require_relative "server/meta_file"
 require_relative "server/symbols"
 require_relative "server/source"
 require_relative "server/application"
-
-module Ellipses
-  module Server
-  end
-end
