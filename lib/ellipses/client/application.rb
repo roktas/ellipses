@@ -7,13 +7,13 @@ module Ellipses
 
       def initialize(loader: nil, repository: nil, server: nil, **options)
         @config     = Config.new(**options)
-        @loader     = loader     || MetaFile.new(config.lockfiles)
+        @loader     = loader     || MetaFile.new
         @repository = repository || Repository.new(@loader)
         @server     = server     || Server::Application.new(config.paths)
       end
 
       def init(directory)
-        @loader = MetaFile.create(directory, config.lockfiles)
+        @loader = MetaFile.create(directory)
       end
 
       def shutdown

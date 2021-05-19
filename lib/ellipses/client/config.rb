@@ -5,12 +5,9 @@ require 'forwardable'
 module Ellipses
   module Client
     class Config
-      DEFAULT_ROOTDIR   = '.'
-      DEFAULT_LOCKFILES = %w[.local/var/src.lock src.lock .src.lock].freeze
-
       extend Forwardable
 
-      def_delegators :@config, *%i[rootdir paths lockfiles]
+      def_delegators :@config, *%i[paths]
 
       def initialize(**options)
         @config = build OpenStruct.new(options.compact)
@@ -26,10 +23,8 @@ module Ellipses
       end
 
       def build(config)
-        config.rootdir = Support.dir!(config.rootdir || DEFAULT_ROOTDIR, error: Error)
-        config.paths   = default_paths if !config.paths || config.paths.empty?
+        config.paths = default_paths if !config.paths || config.paths.empty?
         config.paths.compact!
-        config.lockfiles ||= DEFAULT_LOCKFILES.dup
 
         config
       end

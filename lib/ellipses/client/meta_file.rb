@@ -5,25 +5,24 @@ require 'json'
 module Ellipses
   module Client
     class MetaFile
+      FILES = %w[.local/var/src.lock src.lock .src.lock].freeze
       EMPTY = "[]\n"
 
-      def self.create(directory, alternatives)
+      def self.create(directory)
         Support.dir!(directory)
 
-        selected = alternatives.find { |path| ::Dir.exist? File.join(directory, ::File.dirname(path)) }
+        selected = FILES.find { |path| ::Dir.exist? File.join(directory, ::File.dirname(path)) }
         file     = ::File.join(directory, selected)
 
         ::File.write(file, EMPTY) unless ::File.exist? file
 
-        new alternatives
+        new
       end
 
       attr_reader :directory, :alternatives
 
-      def initialize(alternatives)
-        @alternatives = alternatives
-
-        load
+      def initialize
+        @directory, @file = Support.search_path FILES
       end
 
       def file
@@ -51,12 +50,6 @@ module Ellipses
 
       def to_s
         file
-      end
-
-      private
-
-      def load
-        @directory, @file = Support.search_path alternatives
       end
     end
   end
