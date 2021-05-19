@@ -7,34 +7,38 @@ module Ellipses
     class MetaFile
       EMPTY = "[]\n"
 
+      def self.create(directory, alternatives)
+        Support.dir!(directory)
+
+        selected = alternatives.find { |path| ::Dir.exist? File.join(directory, ::File.dirname(path)) }
+        file     = ::File.join(directory, selected)
+
+        ::File.write(file, EMPTY) unless ::File.exist? file
+
+        new alternatives
+      end
+
       attr_reader :directory, :alternatives
 
-      def initialize(directory, alternatives = nil)
-        @directory    = directory
-        @alternatives = alternatives || ALTERNATIVES
+      def initialize(alternatives)
+        @alternatives = alternatives
+
+        load
       end
 
       def file
-        @file ||= begin
-          base = alternatives.find do |file|
-            ::File.directory?(::File.join(directory, File.dirname(file)))
-          end
-          raise Error, 'Unable to locate lockfile' unless base
-
-          ::File.join(directory, base)
-        end
+        loaded!
+        @file
       end
 
-      def to_s
-        file
+      def loaded?
+        @file && ::File.exist?(@file)
       end
 
-      def touch
-        ::File.write(file, EMPTY) unless ::File.exist? file
-      end
+      def loaded!
+        raise 'Lockfile not located' if @file.nil?
 
-      def exist?
-        ::File.exist? file
+        raise "Lockfile not found: #{@file}" unless ::File.exist? @file
       end
 
       def read
@@ -43,6 +47,16 @@ module Ellipses
 
       def write(meta)
         Support.updatelines(file, meta.empty? ? EMPTY : JSON.pretty_generate(meta))
+      end
+
+      def to_s
+        file
+      end
+
+      private
+
+      def load
+        @directory, @file = Support.search_path alternatives
       end
     end
   end

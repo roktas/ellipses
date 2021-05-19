@@ -17,35 +17,51 @@ module Ellipses
 
       private_constant :File
 
-      attr_reader :rootdir
+      attr_reader :loader
 
-      def initialize(rootdir)
-        @rootdir = rootdir
-        @files   = {}
-        @memo    = {}
+      def initialize(loader)
+        @loader = loader
+        @files  = {}
+        @memo   = {}
       end
 
       def [](path)
         @files[memo(path)].source
       end
 
-      def each(&block)
-        @files.values.map(&:source).each(&block)
+      def each_source
+        each { |_, file| yield(file.source) }
       end
 
       def load(loader)
-        loader.read.each { |meta| register(meta.source, meta.series) }
+        Dir.chdir loader.directory do
+          loader.read.each { |meta| register_internal(meta.source, Source.from_file(meta.source, meta.series)) }
+        end
+      end
+
+      def save(all: true)
+        n = 0
+        each { |_, file| file.save(all: all) and (n += 1) }
+        n.positive?
+      end
+
+      def dump
+        meta = Meta.new []
+
+        each do |path, file|
+          next unless file.registered
+          next unless (source = file.source).series
+
+          meta << Meta::Source.new(source: path, series: source.series)
+        end
+
+        meta
       end
 
       def register(path, *args, **kwargs)
         return @files[key].tap { |file| file.registered = true }.source if @files.key?(key = memo(path))
 
-        source = Source.from_file(key, *args, **kwargs)
-        file = @files[key] = File.new path:       key,
-                                      source:     source,
-                                      digest:     Support.digest(*source.lines),
-                                      registered: true
-        file.source
+        register_internal(key, Source.from_file(path, *args, **kwargs))
       end
 
       def unregister(path)
@@ -60,31 +76,23 @@ module Ellipses
         @files[key].registered
       end
 
-      def save(all: true)
-        n = 0
-
-        @files.each_value { |file| file.save(all: all) and (n += 1) }
-
-        n.positive?
-      end
-
-      def dump
-        meta = Meta.new []
-
-        @files.each do |path, file|
-          next unless file.registered
-          next unless (source = file.source).series
-
-          meta << Meta::Source.new(source: path, series: source.series)
-        end
-
-        meta
-      end
-
       private
 
       def memo(path)
-        @memo[path] ||= Support.deflate_path(path, rootdir)
+        @memo[path] ||= Support.deflate_path(path, loader.directory)
+      end
+
+      def each(&block)
+        Dir.chdir(loader.directory) { @files.each(&block) }
+      end
+
+      def register_internal(key, source)
+        @files[key] = File.new path:       key,
+                               source:     source,
+                               digest:     Support.digest(*source.lines),
+                               registered: true
+
+        source
       end
     end
   end

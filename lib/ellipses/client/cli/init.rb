@@ -14,7 +14,7 @@ module Ellipses
           ]
 
           def call(rootdir:, **)
-            Application.init(rootdir: rootdir)
+            Application.init(rootdir)
           end
         end
       end

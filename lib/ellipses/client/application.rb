@@ -5,27 +5,15 @@ module Ellipses
     class Application
       attr_reader :config, :repository, :loader, :server
 
-      def initialize(repository: nil, loader: nil, server: nil, **options)
+      def initialize(loader: nil, repository: nil, server: nil, **options)
         @config     = Config.new(**options)
-        @repository = repository || Repository.new(config.rootdir)
-        @loader     = loader     || MetaFile.new(config.rootdir, config.lockfiles)
+        @loader     = loader     || MetaFile.new(config.lockfiles)
+        @repository = repository || Repository.new(@loader)
         @server     = server     || Server::Application.new(config.paths)
       end
 
-      def rootdir
-        config.rootdir
-      end
-
-      def init
-        loader.touch
-
-        repository.load(loader)
-      end
-
-      def init!
-        raise Error, 'Must be initialized' unless loader.exist?
-
-        init
+      def init(directory)
+        @loader = MetaFile.create(directory, config.lockfiles)
       end
 
       def shutdown
@@ -63,7 +51,7 @@ module Ellipses
       def update
         init!
 
-        repository.each { |source| source.recompile(server) }
+        repository.each_source { |source| source.recompile(server) }
 
         shutdown
       end
@@ -76,8 +64,16 @@ module Ellipses
         repository.dump
       end
 
+      private
+
+      def init!
+        raise Error, 'Must be initialized' unless loader.loaded?
+
+        repository.load(loader)
+      end
+
       class << self
-        %i[init init! compile compile! decompile decompile! update].each do |meth|
+        %i[init compile compile! decompile decompile! update].each do |meth|
           define_method(meth) { |*args, **options| new(**options).public_send(meth, *args) }
         end
       end
