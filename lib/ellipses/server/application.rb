@@ -5,7 +5,7 @@ module Ellipses
     class Application
       DEFAULT_PORT = 0
 
-      Instance = Struct.new :name, :source, :port, keyword_init: true do
+      Instance = Struct.new :name, :repository, :port, keyword_init: true do
         def to_s
           self.class.ident(name, port)
         end
@@ -26,7 +26,7 @@ module Ellipses
       end
 
       def out(name:, symbols:, port: nil)
-        [].tap { |chunks| symbols.each { |symbol| chunks.append(*instance(name, port).source[symbol]) } }
+        [].tap { |chunks| symbols.each { |symbol| chunks.append(*instance(name, port).repository[symbol]) } }
       end
 
       def dump(name:, symbols:, port: nil)
@@ -44,7 +44,7 @@ module Ellipses
       def available!(name)
         return if available?(name)
 
-        raise Error, "Source not found in path: #{name}"
+        raise Error, "Repository not found in path: #{name}"
       end
 
       private
@@ -54,9 +54,9 @@ module Ellipses
         return @instances[ident] if @instances.key? ident
 
         directory = scan(name)
-        raise Error, "No source instance found: #{name}" unless directory
+        raise Error, "No repository instance found: #{name}" unless directory
 
-        instance = Instance.new name: name, source: Source.load(directory), port: port
+        instance = Instance.new name: name, repository: Repository.load(directory), port: port
         @instances[ident] = instance
       end
 

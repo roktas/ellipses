@@ -7,9 +7,9 @@ module Ellipses
     module CLI
       module Commands
         class Validate < Dry::CLI::Command
-          desc 'Validate source'
+          desc 'Validate repository'
 
-          argument :path, type: :string, required: true, desc: 'Source path'
+          argument :path, type: :string, required: true, desc: 'Repository path'
 
           def call(path:)
             Ellipses::Server::Application.validate path

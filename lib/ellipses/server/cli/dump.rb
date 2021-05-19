@@ -7,7 +7,7 @@ module Ellipses
         class Dump < Dry::CLI::Command
           desc 'Dump symbols'
 
-          argument :path,    type: :string, required: true,  desc: 'Source path'
+          argument :path,    type: :string, required: true,  desc: 'Repository path'
           argument :symbols, type: :array,  required: false, desc: 'Symbols'
 
           def call(path:, symbols: [], **)

@@ -4,7 +4,7 @@ require 'set'
 
 module Ellipses
   module Server
-    class Source
+    class Repository
       attr_reader :symbols, :global, :root
 
       def initialize(symbols:, global:, directory:)
