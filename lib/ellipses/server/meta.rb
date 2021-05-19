@@ -7,7 +7,7 @@ module Ellipses
     class Meta
       Error = Class.new Error
 
-      using Support::Refinements::Struct
+      using Support::Refinements::Struct::FromHashWithoutBogusKeys
 
       Global = Struct.new(:depends, :extension, :root, keyword_init: true) do
         def self.from_hash(hash)

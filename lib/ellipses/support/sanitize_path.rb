@@ -2,7 +2,7 @@
 
 module Ellipses
   module Support
-    module PathSanitizer
+    module SanitizePath
       class Sanitizer
         def self.sanitize(*args, **kwargs)
           new(*args, **kwargs).sanitize
@@ -96,6 +96,6 @@ module Ellipses
       end
     end
 
-    extend PathSanitizer
+    extend SanitizePath
   end
 end

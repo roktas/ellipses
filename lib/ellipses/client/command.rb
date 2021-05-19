@@ -7,7 +7,7 @@ module Ellipses
     class Command
       Error = Class.new Error
 
-      using Support::Refinements::Struct
+      using Support::Refinements::Struct::FromHashWithoutBogusKeys
 
       Proto = Struct.new :name, :klass, :argc, keyword_init: true do
         def valid?(argv)
