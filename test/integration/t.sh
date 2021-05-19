@@ -19,7 +19,7 @@ t() {
 	local src=$PWD/$THIS dest=$TESTROOT/$THIS
 	local actual=$dest/a expected=$dest/b
 
-	[[ -d $src   ]] || .die "No test fixture found: $src"
+	[[ -d $src ]] || .die "No test fixture found: $src"
 
 	mkdir -p "$dest"
 	cp -a "$src"/. "$dest"
