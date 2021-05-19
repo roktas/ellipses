@@ -24,7 +24,6 @@ module Ellipses
 
       def compile(file)
         init!
-
         repository.register(file).recompile(server)
       end
 
@@ -35,11 +34,9 @@ module Ellipses
 
       def decompile(file)
         init!
-
         return unless repository.registered?(file)
 
         repository[file].decompile
-
         repository.unregister(file)
       end
 
@@ -50,9 +47,7 @@ module Ellipses
 
       def update
         init!
-
         repository.each_source { |source| source.recompile(server) }
-
         shutdown
       end
 
