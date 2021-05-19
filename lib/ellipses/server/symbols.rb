@@ -6,6 +6,7 @@ module Ellipses
   module Server
     class Symbols
       CircularReferenceError = Class.new Error
+      MissingSymbolError     = Class.new Error
 
       class Symbol
         attr_reader :depends
@@ -70,6 +71,8 @@ module Ellipses
       end
 
       def [](string)
+        raise MissingSymbolError, "Missing symbol: #{string}" unless @registry.key? string
+
         @registry[string]
       end
 
