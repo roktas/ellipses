@@ -7,6 +7,8 @@ module Ellipses
     class Symbols
       CircularReferenceError = Class.new Error
       MissingSymbolError     = Class.new Error
+      BogusLeafError         = Class.new Error
+      EmptyPayloadError      = Class.new Error
 
       class Symbol
         attr_reader :depends
@@ -27,14 +29,24 @@ module Ellipses
           @meta.to_s
         end
 
+        def leaf?
+          depends.empty?
+        end
+
         def path
           @path ||= @meta.path
         end
 
         def payload(rootdir, extension = nil)
-          return [] unless (file = where(rootdir, extension)) && !::File.directory?(file)
+          unless (file = where(rootdir, extension)) && !::File.directory?(file)
+            raise BogusLeafError, "No source found for leaf symbol: #{self}" if leaf?
 
-          ::File.readlines file
+            return []
+          end
+
+          ::File.readlines(file).tap do |lines|
+            raise EmptyPayloadError, "Empty source for leaf symbol: #{self}" if lines.empty?
+          end
         end
 
         private
