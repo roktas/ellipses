@@ -1,8 +1,8 @@
 Ellipses
 ========
 
-[![test](https://github.com/roktas/ellipses/actions/workflows/test.yml/badge.svg)](https://github.com/roktas/ellipses/actions/workflows/test.yml)
-[![codebeat badge](https://codebeat.co/badges/fe709527-2a06-40ed-b6af-517907bdc75e)](https://codebeat.co/projects/github-com-roktas-ellipses-master)
+[![test](https://github.com/alaturka/ellipses/actions/workflows/test.yml/badge.svg)](https://github.com/alaturka/ellipses/actions/workflows/test.yml)
+[![codebeat badge](https://codebeat.co/badges/3828d0b1-bdac-4028-92a4-33055a74ecae)](https://codebeat.co/projects/github-com-alaturka-ellipses-master)
 
 Static code reusing tool (**WARNING:** This software is a pre-release that is still in development)
 
