@@ -21,9 +21,7 @@ module Ellipses
           symbols.resolve(string).each { |symbol| yield_symbol(chunks, symbol) }
           next unless chunks.empty?
 
-          raise Error, <<~MSG
-            No chunks resolved for symbol: #{string}. The symbol may already have been consumed.
-          MSG
+          raise Error, "No chunks resolved for symbol: #{string}, which may already have been consumed"
         end
       end
 
