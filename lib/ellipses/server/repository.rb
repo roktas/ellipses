@@ -5,6 +5,8 @@ require 'set'
 module Ellipses
   module Server
     class Repository
+      Error = Class.new Error
+
       attr_reader :symbols, :global, :root
 
       def initialize(symbols:, global:, directory:)
@@ -17,6 +19,11 @@ module Ellipses
       def [](string)
         (chunks = []).tap do
           symbols.resolve(string).each { |symbol| yield_symbol(chunks, symbol) }
+          next unless chunks.empty?
+
+          raise Error, <<~MSG
+            No chunks resolved for symbol: #{string}. The symbol may already have been consumed.
+          MSG
         end
       end
 
