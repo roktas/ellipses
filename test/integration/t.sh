@@ -6,11 +6,11 @@ THIS="$(basename "${0##*/}" .t)"; readonly THIS
 
 unset SRCPATH ELLIPSES_PATH
 
-.cry() {
+cry() {
 	echo >&2 "$@"
 }
 
-.die() {
+die() {
 	echo >&2 "$@"
 	exit 1
 }
@@ -19,13 +19,13 @@ t() {
 	local src=$PWD/$THIS dest=$TESTROOT/$THIS
 	local actual=$dest/a expected=$dest/b
 
-	[[ -d $src ]] || .die "No test fixture found: $src"
+	[[ -d $src ]] || die "No test fixture found: $src"
 
 	mkdir -p "$dest"
 	cp -a "$src"/. "$dest"
 
-	[[ -e $actual   ]] || .die "No 'actual' file/directory found: $actual"
-	[[ -e $expected ]] || .die "No 'expected' file/directory found: $expected"
+	[[ -e $actual   ]] || die "No 'actual' file/directory found: $actual"
+	[[ -e $expected ]] || die "No 'expected' file/directory found: $expected"
 
 	if [[ -d $actual ]]; then
 		cd "$actual"

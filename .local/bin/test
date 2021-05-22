@@ -10,11 +10,11 @@ export PATH="$PWD"/bin:"$PATH"
 TESTROOT=$(readlink -m .local/tmp/t)
 export TESTROOT
 
-.cry() {
+cry() {
 	echo >&2 "$@"
 }
 
-.die() {
+die() {
 	echo >&2 "$@"
 	exit 1
 }
@@ -40,9 +40,9 @@ run() {
 		) || err=$?
 
 		if [[ $err -eq 0 ]]; then
-			.cry "✓    $name"
+			cry "✓    $name"
 		else
-			.die "✗    $name"
+			die "✗    $name"
 		fi
 	done
 }
@@ -66,10 +66,10 @@ main() {
 
 	local prg
 	for prg in "${args[@]}"; do
-		.cry "--> $prg"
-		.cry
+		cry "--> $prg"
+		cry
 		run "${programs[$prg]}"
-		.cry
+		cry
 	done
 }
 
