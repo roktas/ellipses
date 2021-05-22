@@ -45,7 +45,7 @@ module Ellipses
           end
 
           ::File.readlines(file).tap do |lines|
-            raise EmptyPayloadError, "Empty source for leaf symbol: #{self}" if lines.empty?
+            raise EmptyPayloadError, "Empty source for symbol: #{self}" if lines.empty?
           end
         end
 
