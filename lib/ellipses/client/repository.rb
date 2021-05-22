@@ -9,7 +9,7 @@ module Ellipses
           return if digest == (new_digest = Support.digest(*source.lines))
 
           Support.writelines(path, source.lines)
-          warn Support.notice(path)
+          Support.notice(path)
 
           self.digest = new_digest
         end

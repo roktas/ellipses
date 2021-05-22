@@ -35,19 +35,19 @@ module Ellipses
     module_function
 
     def notice(string)
-      "#{Color.bold Color.green '✓'}  #{string}"
+      Kernel.warn $stderr.tty? ? "#{Color.bold Color.green '✓'}  #{string}" : "✓  #{string}"
     end
 
     def info(string)
-      "#{Color.bold Color.green '✓'}  #{Color.dim string}"
+      Kernel.warn $stderr.tty? ? "#{Color.bold Color.green '✓'}  #{Color.dim string}" : "✓  #{string}"
     end
 
-    def error(string)
-      "#{Color.bold Color.red '✗'}  #{string}"
+    def abort(string)
+      Kernel.abort $stderr.tty? ? "#{Color.bold Color.red '✗'}  #{string}" : "✗  #{string}"
     end
 
-    def warning(string)
-      "#{Color.bold Color.yellow '!'}  #{string}"
+    def warn(string)
+      Kernel.warn $stderr.tty? ? "#{Color.bold Color.yellow '!'}  #{string}" : "!  #{string}"
     end
   end
 end
