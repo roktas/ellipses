@@ -2,6 +2,25 @@
 
 module Ellipses
   module Support
+    module UI
+      module_function
+
+      def notice(string)
+        Kernel.warn $stderr.tty? ? "#{Color.bold Color.green '✓'}  #{string}" : "✓  #{string}"
+      end
+
+      def info(string)
+        Kernel.warn $stderr.tty? ? "#{Color.bold Color.green '✓'}  #{Color.dim string}" : "✓  #{string}"
+      end
+
+      def abort(string)
+        Kernel.abort $stderr.tty? ? "#{Color.bold Color.red '✗'}  #{string}" : "✗  #{string}"
+      end
+
+      def warn(string)
+        Kernel.warn $stderr.tty? ? "#{Color.bold Color.yellow '!'}  #{string}" : "!  #{string}"
+      end
+    end
     module Color
       # rubocop:disable Layout/SpaceInsideArrayPercentLiteral
       %w[
@@ -30,24 +49,6 @@ module Ellipses
         singleton_class.public_send(:define_method, attr) { |string| "\e[#{code}m#{string}\e[0m" }
       end
       # rubocop:enable Layout/SpaceInsideArrayPercentLiteral
-    end
-
-    module_function
-
-    def notice(string)
-      Kernel.warn $stderr.tty? ? "#{Color.bold Color.green '✓'}  #{string}" : "✓  #{string}"
-    end
-
-    def info(string)
-      Kernel.warn $stderr.tty? ? "#{Color.bold Color.green '✓'}  #{Color.dim string}" : "✓  #{string}"
-    end
-
-    def abort(string)
-      Kernel.abort $stderr.tty? ? "#{Color.bold Color.red '✗'}  #{string}" : "✗  #{string}"
-    end
-
-    def warn(string)
-      Kernel.warn $stderr.tty? ? "#{Color.bold Color.yellow '!'}  #{string}" : "!  #{string}"
     end
   end
 end

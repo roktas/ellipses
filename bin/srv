@@ -6,7 +6,7 @@ require 'ellipses/server/cli'
 def main
   Dry::CLI.new(Ellipses::Server::CLI::Commands).()
 rescue Ellipses::Error => e
-  Ellipses::Support.abort e.message
+  Ellipses::Support::UI.abort e.message
 end
 
 main

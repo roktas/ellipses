@@ -17,9 +17,9 @@ module Ellipses
       end
 
       def shutdown
-        Support.warn 'Nothing changed' unless repository.save
+        Support::UI.warn 'Nothing changed' unless repository.save
 
-        loader.write(dump) and Support.info('Updated lock file')
+        loader.write(dump) and Support::UI.info('Updated lock file')
       end
 
       def compile(file)
