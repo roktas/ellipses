@@ -141,7 +141,7 @@ Yol haritası
 
 Kişisel tüketime hazır PoC sürüm
 
-- [ ] Geliştirici dokümantasyonunu yaz
+- [ ] Geliştirici dokümantasyonu yaz
 
 ### Sürüm `0.1`
 
@@ -149,13 +149,13 @@ Yakın çevrenin (kuvvetli uyarılarla) kullanımına izin verilebilecek sürüm
 
 - [ ] `README`'yi zenginleştir
 
-- [ ] Son kullanıcı kılavuzlarını yaz
+- [ ] Son kullanıcı kılavuzlarının ilk sürümlerini yaz
   * [ ] `src.1`
   * [ ] `srv.1`
   * [ ] `src.lock.5`
   * [ ] `src.toml.5`
 
-### Sürüm `0.5`
+### Sürüm `0.x` (`x` 1'den büyük)
 
 Yakın çevrenin kullanımına teşvik edilecek sürüm
 
@@ -206,4 +206,4 @@ Yeni baştan yazımı gerektirebilecek gelecek sürümler
 
 - [ ] Go ile yeniden yaz?
 
-- [ ] "Dependabot" tarzı bir servise yaz
+- [ ] "Dependabot" tarzı bir servis yaz
