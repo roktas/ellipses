@@ -2,11 +2,14 @@ Ellipses
 ========
 
 [![test](https://github.com/alaturka/ellipses/actions/workflows/test.yml/badge.svg)](https://github.com/alaturka/ellipses/actions/workflows/test.yml)
+
 [![codebeat badge](https://codebeat.co/badges/a781e15d-431f-48a0-ad43-64e424acf9bf)](https://codebeat.co/projects/github-com-alaturka-ellipses-dev)
 
 Static code reusing tool (**WARNING:** This software is a pre-release that is still in development)
 
 Statik olarak yeniden kod kullanımı için bir araç (**UYARI:** Bu yazılım, geliştirmesi halen devam eden bir ön sürümdür)
+
+Proje ayrıntıları için [Geliştirme dokümanlarına](.local/BENİOKU.md) göz atabilirsiniz.
 
 Kullanım
 --------
