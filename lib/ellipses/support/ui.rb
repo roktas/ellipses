@@ -21,6 +21,7 @@ module Ellipses
         Kernel.warn $stderr.tty? ? "#{Color.bold Color.yellow '!'}  #{string}" : "!  #{string}"
       end
     end
+
     module Color
       # rubocop:disable Layout/SpaceInsideArrayPercentLiteral
       %w[
