@@ -133,3 +133,77 @@ Kullanım
 
   Önceden uygulanan eklemelerin içeriğine müdahale edilmediği sürece `test.sh` dosyasında yapılan tüm değişiklikler
   korunmaktadır.
+
+Yol haritası
+------------
+
+### Sürüm `0.0`
+
+Kişisel tüketime hazır PoC sürüm
+
+- [ ] Geliştirici dokümantasyonunu yaz
+
+### Sürüm `0.1`
+
+Yakın çevrenin (kuvvetli uyarılarla) kullanımına izin verilebilecek sürüm
+
+- [ ] `README`'yi zenginleştir
+
+- [ ] Son kullanıcı kılavuzlarını yaz
+  * [ ] `src.1`
+  * [ ] `srv.1`
+  * [ ] `src.lock.5`
+  * [ ] `src.toml.5`
+
+### Sürüm `0.5`
+
+Yakın çevrenin kullanımına teşvik edilecek sürüm
+
+- [ ] Temel birim testlerini tamamla
+
+- [ ] Eksik komutları tamamla
+  * [ ] `src validate`
+  * [ ] `srv validate`
+
+### Sürüm `1.0`
+
+Resmi ilk sürüm
+
+- [ ] Enternasyonelleştir (İngilizce dokümantasyon)
+
+- [ ] Birim testlerini tamamla (code coverage kabul edilir seviyede olmalı)
+
+- [ ] Entegrasyon testlerini tamamla
+  * [ ] Testleri refaktörle
+  * [ ] Testleri zenginleştir
+
+- [ ] Yeterince test edilmemiş direktifleri tamamla
+  * [ ] `reject`
+  * [ ] `select`
+  * [ ] `substitute`
+  * [ ] `translate`
+
+- [ ] Resmi Gem olarak yayınla
+
+### Sürüm `1.0` sonrası
+
+Yeni özelliklerin planlanabileceği sürümler
+
+- [ ] Sembollerde yeni nitelikler?
+  * [ ] `Conflict` niteliği?
+  * [ ] `Provides` niteliği?
+
+- [ ] Yeni direktifler
+  * [ ] `render`
+
+- [ ] Pre-injection yoluyla seçilen bazı bağımlılıkların çekilmemesi
+
+### Gelecek
+
+Yeni baştan yazımı gerektirebilecek gelecek sürümler
+
+- [ ] Git yoluyla kaynak yönetimini seçenek olarak ekle
+
+- [ ] Go ile yeniden yaz?
+
+- [ ] "Dependabot" tarzı bir servise yaz
