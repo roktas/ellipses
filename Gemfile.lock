@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ellipses (0.1.0)
+    ellipses (0.0.0.pre.unreleased)
       dry-cli
       tomlrb
 
