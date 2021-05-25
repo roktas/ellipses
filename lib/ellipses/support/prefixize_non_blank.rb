@@ -4,7 +4,7 @@ module Ellipses
   module Support
     module_function
 
-    def prefix_non_blank(string, prefix, excludes: nil)
+    def prefixize_non_blank(string, prefix, excludes: nil)
       stripped = string.strip
 
       return string if prefix.empty? || stripped.empty?

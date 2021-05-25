@@ -70,20 +70,6 @@
     ]
   },
   {
-    "source": "lib/ellipses/support/prefix_non_blank.rb",
-    "series": [
-      {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby string/prefix_non_blank\n",
-        "insertion": {
-          "before": 0,
-          "after": 7,
-          "signature": "    def prefix_non_blank(string, prefix, excludes: nil)\n",
-          "digest": "6f3272454d30ee8950a26c2cd754b01ba7ca80c4635572d4818eafc1973725ce"
-        }
-      }
-    ]
-  },
-  {
     "source": "lib/ellipses/support/refinements.rb",
     "series": [
       {
@@ -191,6 +177,20 @@
           "after": 1,
           "signature": "      ::File.write(file, \"#{[*lines].join.chomp}\\n\")\n",
           "digest": "a28abc2ef4ab5dd636b71a287fb32ab262897d0b3d72389fa24e460e68e26990"
+        }
+      }
+    ]
+  },
+  {
+    "source": "lib/ellipses/support/prefixize_non_blank.rb",
+    "series": [
+      {
+        "directive": "    ... github.com/alaturka/alaturka/src/ruby string/prefixize_non_blank\n",
+        "insertion": {
+          "before": 0,
+          "after": 7,
+          "signature": "    def prefixize_non_blank(string, prefix, excludes: nil)\n",
+          "digest": "4103d062400eb360bbbe9b7c670ce77d8f16e13ddc339b206ed024301ad9f233"
         }
       }
     ]

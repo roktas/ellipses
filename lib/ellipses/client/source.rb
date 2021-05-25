@@ -47,7 +47,7 @@ module Ellipses
         directive = Directive.new(parsed.lexemes, server)
 
         outlines = directive.execute(**kwargs)
-        outlines.map! { |outline| Support.prefix_non_blank(outline, parsed.prefix, excludes: "\f\f\f") }
+        outlines.map! { |outline| Support.prefixize_non_blank(outline, parsed.prefix, excludes: "\f\f\f") }
 
         Lines[outlines]
       end
