@@ -132,17 +132,87 @@ ismlendirme ve argüman sayısı sınırları bildirilir.
 `Server`
 --------------------------------
 
-### `Application`
-
-### `CLI`
+Sunucuyla ilgili tüm işlerin gerçekleştiği modül.  Burada geçen "sunma" işlemi geleneksel anlamın biraz dışındadır.
+İstemci tarafta `include` komutuyla bildirilen "URI"lerin her biri dosya sisteminde, kök dizininde geçerli bir
+`src.toml` dosyası barındıran bir dizin ağacıdır.  Bu dizin ağacına sunucu deposu: `Server::Repository` diyoruz.  Her
+sunucu deposu `src.toml` dosyasında bir dizi "sembol" (`Symbol`) ekspoze eder.  İstemci tarafta çalıştırılan bir
+`include` komutu argüman olarak verilen "URI"ye karşı düşen sunucu deposundan, yine argüman olarak verilen sembollere
+karşı düşen kaynak kod satırlarını tüketir.
 
 ### `Repository`
 
-### `MetaFile`
+Bir sunucu deposundaki sembolleri yöneten nesne.  Bu nesne, `MetaFile` yoluyla yüklenen `src.toml` dosyasında tanımlı
+sembollerden üretilen `Symbols` nesnesi, yine `src.toml` dosyasında tanımlı global ayarlardan üretilen bir
+`Meta::Global` nesnesi ve son olarak semboller dosya sistemindeki gerçek dosyalarla eşleştirilirken yapılacak dosya yolu
+çözümlemesinde kullanılan ve sunucu deposunun bulunduğu kök dizini gösteren bir dizin adından oluşur.  `Repository`
+nesnesinin temel görevi kendisine bildirilen bir sembol dizgisini çözümleyerek bu dizgiye karşı düşen kaynak kod
+satırlarını üretmektir.  Bu şekilde çözümlenerek kaynak kod satırları elde edilen her sembol "tüketilmiş" kabul edilir
+ve aynı sembol bir kez daha istendiğinde çözümleme yapılmadan boş (`nil`) dönülür.
+
+### `CLI`
+
+`Dry::CLI` yoluyla komutları çalıştıran komut satırı nesnesi.  Ayrıntılar için `dry-cli`'ı inceleyin.
+
+### `Application`
+
+`CLI` ile diğer nesneler arasında aracılık yapan "mediator" nesne.  `Application` nesnesi istemciden gelen sunucu
+URI'lerini dizin halinde arayacağı bir `paths` değişkeniyle ilklenir.  Her isimlendirilmiş sunucu/port için, içinde o
+sunucuya karşı düşen `Repository` nesnesini barındıran  özel bir `Instance` üretilir ve üretilen bu sunucu nesneleri bir
+`instances` tablosunda tutulur.
+
+Burada geçen "port" kavramı da geleneksel anlamın biraz dışındadır.  `Repository` nesneleri her sembol istediğinde
+sembolü "tükettiğinden" istemci tarafta aynı dosya içinde bir sembolün birden fazla kez "include" edilmesi olanağı
+normalde bulunmamaktadır.  Bu sınırlama "port" kullanımıyla aşılır.  Aynı sunucu deposundan bir sembolün istemci dosyada
+tekrar eklenmesi isteniyorsa yapılması gereken bildirilen URI'ye aşağıdaki gibi bir "port" eklemektir.
+
+```txt
+... github.com/foo/bar baz
+... github.com/foo/bar:1 baz
+```
+
+Bu örnekte ilk istemci direktifinde `baz` sembolü tüketildiğinden aynı direktifle `baz` sembolü tekrar eklenemez ve hata
+alınır.  Tüketilen sembolü tekrar eklemek için `github.com/foo/bar` sunucu "URI"sine `:1` port belirtimi eklenerek
+`Application` nesnesinin farklı bir instance oluşturması sağlanır.  (Port verilmediğinde `:0` port belirtimi
+varsayılır.)
 
 ### `Meta`
 
+Sunucu deposunu tanımlayan meta bilgileri temsil eden nesne.  Bu nesne bir `Meta::Global` niteliğinden ve deponun
+bildirdiği tüm sembolleri temsil eden bir `Meta::Symbols` niteliğinden oluşur, öyleki temelde bir dizi olan bu nesnede
+her bir eleman bir `Meta::Symbol` nesnesidir.
+
+`Meta::Global` nesnesi aşağıdaki niteliklere sahiptir.
+
+- `depends`: Sunucu deposunda tüm sembollere bağımlılık olarak eklenecek sembol dizgilerini tanımlayan dizgi dizisi.
+
+- `root`: Dosya çözümlemesinde (sunucu deposu köküne eklenerek) kullanılacak kök dizin yolu.
+
+- `extension`: Semboller dosya sistemindeki gerçek dosyalarla eşleştirilirken hesaplanan dosya yoluna dosya eklentisi
+  olarak eklenecek dizgi.
+
+`Meta::Symbol` nesnesi aşağıdaki niteliklere sahiptir.
+
+- `symbol`: Sembole karşı düşen dizgi.
+
+- `description`: Sembolle ilgili (isteğe bağlı) açıklama.
+
+- `depends`: Sembolün bağımlı olduğu diğer sembolleri tanımlayan dizgi dizisi.
+
+- `path`: İsteğe bağlı olarak sembole karşı düşen dosyayı açık halde bildiren dosya yolu dizgisi.
+
+### `MetaFile`
+
+Sunucu deposunu tanımlayan `src.toml` meta dosyasını yöneten nesne.  Kolay düzenlenebilmesi için TOML biçiminin tercih
+edildiği bu dosya `MetaFile` nesnesi yoluyla yüklenir ve ayrıştırılan bilgiler bir `Meta` nesnesine dönüştürülür.
+
 ### `Symbols`
+
+Sunucu deposundaki tüm sembolleri yöneten nesne.  Temelde bir hash olan bu nesne bir `Meta` nesnesiyle ilklenir ve
+verilen sembol dizgisine karşı düşen sembolü tüm bağımlılıklarıyla birlikte çözer.  Nesnenin merkezinde her sembol
+düğümünde özyinelemeli olarak çalışan `walk` metodu vardır.  `Symbol` tablosu `Meta` nesnesinden hareketle
+oluşturulduktan sonra bu `walk` metoduyla semboller arasında "döngüsel referanslar"ın olup olmadığı denetlenir
+(`sanitize` işlemi).  Sonrasında nesneye verilen her sembol dizgisi `resolve` metodu yoluyla yine bu `walk` metodu ile
+çözümlenerek hesaplanan semboller dönülür.
 
 `Support`
 --------------------------------
