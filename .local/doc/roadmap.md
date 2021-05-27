@@ -6,7 +6,7 @@ Sürüm `0.0`
 
 Kişisel tüketime hazır PoC sürüm
 
-- [ ] Geliştirici dokümantasyonu yaz
+- [ ] Geliştirici dokümantasyonu yap
 
 Sürüm `0.1`
 -------------------------------
