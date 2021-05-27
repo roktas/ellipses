@@ -37,6 +37,8 @@ Sürüm `1.0`
 
 Resmi ilk sürüm
 
+- [ ] Statik tipleme (Sorbet vb) olanaklarını kullan
+
 - [ ] Enternasyonelleştir (İngilizce dokümantasyon)
 
 - [ ] Birim testlerini tamamla (code coverage kabul edilir seviyede olmalı)
