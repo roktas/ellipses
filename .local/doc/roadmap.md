@@ -6,7 +6,7 @@ Sürüm `0.0`
 
 Kişisel tüketime hazır PoC sürüm
 
-- [ ] Geliştirici dokümantasyonu yap
+- [X] Geliştirici dokümantasyonu yap
 
 Sürüm `0.1`
 -------------------------------
@@ -83,4 +83,3 @@ Yeni baştan yazımı gerektirebilecek gelecek sürümler
 - [ ] Go ile yeniden yaz?
 
 - [ ] "Dependabot" tarzı bir servis yaz
-

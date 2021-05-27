@@ -12,10 +12,9 @@ yoluyla gelen `compile`, `decompile`, `update` gibi komutlar `Repository` nesnes
 
 `Repository` tüm istemci dosyaların kaydını `Source` nesneleri yoluyla tutan bir "repository" nesnesidir.  İstemci
 dosyalara karşı düşen `Source` nesnelerin bir kısmı durum bilgisiyle oluşturulurken; `compile` komutuyla henüz
-izlenmiyorsa yeni `Source` nesneleri eklenir, `decompile` komutuyla ise izlenen bir dosya depodan çıkartılır.
-
-İlkleme sürecinde öntanımlı olarak bir `Server` nesnesi de oluşturularak derleme (`compile`) işleminde
-kullanılacak sunucu olarak `Application` nesnesinde tutulur.
+izlenmiyorsa yeni `Source` nesneleri eklenir, `decompile` komutuyla ise izlenen bir dosya depodan çıkartılır.  İlkleme
+sürecinde öntanımlı olarak bir `Server` nesnesi de oluşturularak derleme (`compile`) işleminde kullanılacak sunucu
+olarak `Application` nesnesinde tutulur.
 
 ### `CLI`
 
@@ -41,7 +40,7 @@ nesnesine dönüştürülür.  İşlemler `each_source` metoduyla ilgili `Source
 Yapılan derleme işlemlerine ait geri derlemeyi olanaklı kılan meta bilgileri tutan nesne.  İzlenen bir depoya ait güncel
 durum `Meta` nesnelerinden oluşan bir dizi halinde tutulur ve bu dizi JSON biçiminde bir "lock" dosyasına kaydedilir.
 
-Nesne temelde ilgili dosya yolunu taşıyan bir `source` alanı ve derleme işlemlerinin her birini tanımlayan diziye karşı
+Nesne, temelde ilgili dosya yolunu taşıyan bir `source` alanı ve derleme işlemlerinin her birini tanımlayan diziye karşı
 düşen `series` alanından oluşur.  Dizi içeriğindeki her kayıt bir `Lock` nesnesidir.  `Lock` nesnesi değişime yol açan
 "direktif" satırı bilgisi ve yapılan eklemeyi anlatan `Insertion` nesnesinden oluşur.  `Insertion` nesnesi aşağıdaki
 bilgilerden oluşur:
@@ -58,8 +57,8 @@ bilgilerden oluşur:
 
 ### `MetaFile`
 
-Depoda yapılan işlemleri tutan `Meta` nesnesinin JSON biçimine serileştirilmiş halinden oluşan dosya.  İzlenen bir
-depoda bu dosya daima bulunmalı, yoksa `init` komutuyla ilklenerek boş halde oluşturulmalıdır.
+Depoda yapılan işlemlerin kaydını tutan `Meta` nesnesinin JSON biçimine serileştirilmiş halini içeren dosya.  İzlenen
+bir depoda bu dosya daima bulunmalı, yoksa `init` komutuyla ilklenerek boş halde oluşturulmalıdır.
 
 Bu dosya bulunulan dizinden itibaren üst dizinlere doğru yapılacak bir aramada `%w[.local/var/src.lock src.lock
 .src.lock]` dizisinde bulunan dosya yollarından ilk eşleşen olarak belirlenir.  (`.local/var/src.lock` dosya yolu
@@ -73,7 +72,7 @@ dönüştürülerek tutulur.  İşlem geçmişi `series` dizisiyle iletilir.  Do
 durumdaysa bu dizi boştur.  Nesne temelde üç işlem gerçekleştirir: `compile`, `decompile` ve `recompile`.
 
 Derleme işleminde satırlar (`lines`) üzerinde dolaşılarak "direktif" (`Directive`) eşleştirmesi yapılır.  Satırda
-"direktif" varsa `Parser` nesnesiyle ayrıştırılarak `Directive` nesnesi oluşturulur ve nesne çalıştırılır (`execute`).
+"direktif" varsa `Parser` nesnesiyle ayrıştırılarak `Directive` nesnesi oluşturulur ve çalıştırılır (`execute`).
 Çalıştırma sonucunda üretilen yeni satır dizisi ilgili direktif satırıyla değiştirilerek kaynak satırlara yerleştirilir.
 İşlem sonucunda yapılan eklemeyi tasvir eden `Meta` bilgi üretilerek `series` dizisine eklenir.
 
@@ -106,8 +105,8 @@ Bir direktif kaynak kodda `|` karakteriyle ayrılmış komutlardan (`Command`) o
 ```
 
 Bu söz diziminde görülen her bir "command" `Commands` modülü altında toplanmış komut nesnelerinden birine karşı düşer.
-Özel olarak `>>> include uri [symbols]...` komutu `... uri [symbols]...` söz dizimiyle de tanınabilir.  (Bu söz
-diziminde geçen `...` (ellipses) karakteri bu projeye de ismini vermiştir.)
+Özel olarak `>>> include uri [symbols]` komutu `... uri [symbols]` "syntax sugar" niteliğindeki söz dizimiyle de
+tanınabilir.  (Söz diziminde geçen `...` (ellipses) karakteri bu projeye de ismini vermiştir.)
 
 `Directive` nesnesi `Command` nesneleri dizisinden oluşan kompozit bir nesnedir.  Bir derleme işlemi sırasında ilgili
 satırdaki direktif çalıştırılırken her bir komutun ürettiği yeni satırlar takip eden komuta girdi olarak girer ve son
@@ -115,19 +114,18 @@ komutun ürettiği satırlar direktifin bulunduğu satırla yer değiştirir.
 
 ### `Command`
 
-`Commands` modülü altındaki tüm komut eklentilerini temsil eden komut nesnesi.  Bir komut ayrıştırma sonrasında üretilen
-`Command` nesnesi `Directive` nesnesine girerken önce (varsa) `setup` metodu çağrılarak yapılandırılır.  Bu aşamada
-örneğin komut argümanları denetlenir ve varsa hatalar için istisna üretilir.  Direktifin çalıştırması ("execute")
-sırasında ise `call` metodu çağrılır.  Her komutun sunucu (`Server`) tüketmesi gerekmemekle birlikte bazı "kaynak"
-komutlar (ör. `include`) çalıştırma sırasında ihtiyaç duyacağı `Server` nesnesini `Command` baz nesnesinden alabilir.
-
-`Command` nesnesi `Commands` isim uzayındaki komutlarda kullanılmak üzere basit bir `DSL` de barındırır.
+`Commands` modülü altındaki tüm komut eklentilerini temsil eden komut nesnesi.  Ayrıştırma sonrasında üretilen `Command`
+nesnesi `Directive` nesnesine girerken önce (varsa) `setup` metodu çağrılarak yapılandırılır.  Bu aşamada örneğin komut
+argümanları denetlenir ve varsa hatalar için istisna üretilir.  Direktifin çalıştırması ("execute") sırasında ise `call`
+metodu çağrılır.  Her komutun sunucu (`Server`) tüketmesi gerekmemekle birlikte bazı "kaynak" komutlar (ör. `include`)
+çalıştırma sırasında ihtiyaç duyacağı `Server` nesnesini `Command` baz nesnesinden alabilir.  `Command` nesnesi
+`Commands` isim uzayındaki komutlarda kullanılmak üzere basit bir `DSL` de barındırır.
 
 ### `Commands`
 
-Tüm komutları birer eklenti halinde barındıran `Command` nesneleri.  Bir komut tanımlanırken öncelikle `Command`
-sınıfından miras alır ve sınıf gövdesinde `Command` sınıfının sunduğu DSL'i kullanarak komutun söz diziminde gerekli
-ismlendirme ve argüman sayısı sınırları bildirilir.
+`Command` nesnesinden miras alarak gerçeklenen tüm komutları birer eklenti halinde barındıran isim uzayı modülü.  Bir
+komut tanımlanırken öncelikle `Command` sınıfından miras alır ve sınıf gövdesinde `Command` sınıfının sunduğu DSL
+kullanılarak komutun ismi ve argüman denetlemesi için gerekli bilgi bildirilir.
 
 `Server`
 --------------------------------
@@ -136,7 +134,7 @@ Sunucuyla ilgili tüm işlerin gerçekleştiği modül.  Burada geçen "sunma" i
 İstemci tarafta `include` komutuyla bildirilen "URI"lerin her biri dosya sisteminde, kök dizininde geçerli bir
 `src.toml` dosyası barındıran bir dizin ağacıdır.  Bu dizin ağacına sunucu deposu: `Server::Repository` diyoruz.  Her
 sunucu deposu `src.toml` dosyasında bir dizi "sembol" (`Symbol`) ekspoze eder.  İstemci tarafta çalıştırılan bir
-`include` komutu argüman olarak verilen "URI"ye karşı düşen sunucu deposundan, yine argüman olarak verilen sembollere
+`include` komutu, argüman olarak verilen "URI"ye karşı düşen sunucu deposundan, yine argüman olarak verilen sembollere
 karşı düşen kaynak kod satırlarını tüketir.
 
 ### `Repository`
@@ -207,11 +205,11 @@ edildiği bu dosya `MetaFile` nesnesi yoluyla yüklenir ve ayrıştırılan bilg
 
 ### `Symbols`
 
-Sunucu deposundaki tüm sembolleri yöneten nesne.  Temelde bir hash olan bu nesne bir `Meta` nesnesiyle ilklenir ve
+Sunucu deposundaki tüm sembolleri temsil eden nesne.  Temelde bir hash olan bu nesne bir `Meta` nesnesiyle ilklenir ve
 verilen sembol dizgisine karşı düşen sembolü tüm bağımlılıklarıyla birlikte çözer.  Nesnenin merkezinde her sembol
 düğümünde özyinelemeli olarak çalışan `walk` metodu vardır.  `Symbol` tablosu `Meta` nesnesinden hareketle
-oluşturulduktan sonra bu `walk` metoduyla semboller arasında "döngüsel referanslar"ın olup olmadığı denetlenir
-(`sanitize` işlemi).  Sonrasında nesneye verilen her sembol dizgisi `resolve` metodu yoluyla yine bu `walk` metodu ile
+oluşturulduktan sonra bu `walk` metoduyla semboller arasında "döngüsel referanslar" başta olmak üzere hata olup olmadığı
+denetlenir (`sanitize` işlemi).  Nesneye verilen her sembol dizgisi `resolve` metodu yoluyla yine bu `walk` metodu ile
 çözümlenerek hesaplanan semboller dönülür.
 
 `Support`
