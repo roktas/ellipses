@@ -8,7 +8,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.name        = 'ellipses'
   s.author      = 'Recai Oktaş'
   s.email       = 'roktas@gmail.com'
-  s.license     = 'GPL'
+  s.license     = 'GPL-3.0-or-later'
   s.version     = Ellipses::VERSION.dup
   s.summary     = 'Ellipses'
   s.description = 'Ellipses'
