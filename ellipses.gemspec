@@ -13,15 +13,15 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.summary     = 'Ellipses'
   s.description = 'Ellipses'
 
-  s.homepage      = 'https://roktas.github.io/ellipses'
+  s.homepage      = 'https://alaturka.github.io/ellipses'
   s.files         = Dir['CHANGELOG.md', 'LICENSE.md', 'README.md', 'BENİOKU.md', 'ellipses.gemspec', 'lib/**/*']
-  s.executables   = Dir['bin/*']
-  s.require_paths = ['lib']
+  s.executables   = %w[src srv]
+  s.require_paths = %w[lib]
 
   s.metadata['allowed_push_host'] = 'https://rubygems.org'
-  s.metadata['changelog_uri']     = 'https://github.com/roktas/ellipses/blob/master/CHANGELOG.md'
-  s.metadata['source_code_uri']   = 'https://github.com/roktas/ellipses'
-  s.metadata['bug_tracker_uri']   = 'https://github.com/roktas/ellipses/issues'
+  s.metadata['changelog_uri']     = 'https://github.com/alaturka/ellipses/blob/master/CHANGELOG.md'
+  s.metadata['source_code_uri']   = 'https://github.com/alaturka/ellipses'
+  s.metadata['bug_tracker_uri']   = 'https://github.com/alaturka/ellipses/issues'
 
   s.required_ruby_version = '>= 2.5.0' # rubocop:disable Gemspec/RequiredRubyVersion
 
