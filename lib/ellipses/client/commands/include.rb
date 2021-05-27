@@ -7,14 +7,14 @@ module Ellipses
         command 'include', argc: (1..)
 
         def setup
-          uri, *param.symbols = argv
-          param.source, param.port = uri.split(':')
+          source, *param.symbols = argv
+          param.uri, param.port = source.split(':')
 
-          server.available!(param.source)
+          server.available!(param.uri)
         end
 
         def call(*)
-          server.dump(name: param.source, symbols: param.symbols, port: param.port)
+          server.dump(uri: param.uri, symbols: param.symbols, port: param.port)
         end
       end
     end
