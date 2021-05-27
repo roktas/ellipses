@@ -1,3 +1,4 @@
 .envrc
 .local/tmp
 /vendor/
+/pkg/
