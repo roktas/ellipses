@@ -1,7 +1,7 @@
 Yol haritası
 ============
 
-Sürüm `0.0`
+~~Sürüm `0.0`~~
 -------------------------------
 
 Kişisel tüketime hazır PoC sürüm
