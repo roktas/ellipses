@@ -18,7 +18,6 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.executables   = %w[src srv]
   s.require_paths = %w[lib]
 
-  s.metadata['allowed_push_host'] = 'https://rubygems.pkg.github.com/alaturka'
   s.metadata['changelog_uri']     = 'https://github.com/alaturka/ellipses/blob/master/CHANGELOG.md'
   s.metadata['source_code_uri']   = 'https://github.com/alaturka/ellipses'
   s.metadata['bug_tracker_uri']   = 'https://github.com/alaturka/ellipses/issues'
