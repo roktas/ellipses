@@ -10,6 +10,15 @@ Statik olarak yeniden kod kullanımı için bir araç (**UYARI:** Bu yazılım, 
 
 Proje ayrıntıları için [Geliştirme dokümanlarına](.local/BENİOKU.md) göz atabilirsiniz.
 
+Kurulum
+--------
+
+Yayınlanan Gem paketini kurmanız yeterlidir.
+
+```sh
+gem install ellipses
+```
+
 Kullanım
 --------
 
