@@ -13,11 +13,7 @@ Proje ayrıntıları için [Geliştirme dokümanlarına](.local/BENİOKU.md) gö
 Kurulum
 --------
 
-Yayınlanan Gem paketini kurmanız yeterlidir.
-
-```sh
-gem install ellipses
-```
+Yayınlanan [Gem paketini](https://github.com/alaturka/ellipses/packages) kurmanız yeterlidir.
 
 Kullanım
 --------
