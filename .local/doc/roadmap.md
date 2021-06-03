@@ -32,6 +32,8 @@ Yakın çevrenin kullanımına teşvik edilecek sürüm
   * [ ] `src validate`
   * [ ] `srv validate`
 
+- [ ] Öntanımlı sembol desteği
+
 Sürüm `1.0`
 -------------------------------
 
@@ -46,6 +48,12 @@ Resmi ilk sürüm
 - [ ] Entegrasyon testlerini tamamla
   * [ ] Testleri refaktörle
   * [ ] Testleri zenginleştir
+
+- [ ] Sunucu değişikliklerine uyarlamak için bakım komutları
+  * [ ] Compendia URI değişikliği yapılabilmeli
+  * [ ] Sembol rename'leri yönetilebilmeli
+
+- [ ] İzlenen dosyalardaki "rename"leri yönet
 
 - [ ] Yeni komutlar
   * [ ] `src refresh`
@@ -63,6 +71,8 @@ Sürüm `1.0` sonrası
 -------------------------------
 
 Yeni özelliklerin planlanabileceği sürümler
+
+- [ ] "Cross repo depends" desteği
 
 - [ ] Sembollerde yeni nitelikler?
   * [ ] `Conflict` niteliği?
@@ -83,3 +93,8 @@ Yeni baştan yazımı gerektirebilecek gelecek sürümler
 - [ ] Go ile yeniden yaz?
 
 - [ ] "Dependabot" tarzı bir servis yaz
+
+- [ ] Sunucu meta dosyasını daha kolay yönetilebilir yap
+  * [ ] Section desteği ekle (per section yapılandırmalar)
+  * [ ] Meta yönetimini parçalı yap: otomatik üretilen ve elle düzenlenen parçalar
+  * [ ] Shell compendia için otomatik bağımlılık üretimi (ayrı bir proje)
