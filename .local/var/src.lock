@@ -3,7 +3,7 @@
     "source": "lib/ellipses/support/deflate_path.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby file/deflate_path\n",
+        "directive": "    ... github.com/alaturka/ruby file/deflate_path\n",
         "insertion": {
           "before": 2,
           "after": 1,
@@ -17,7 +17,7 @@
     "source": "lib/ellipses/support/digest.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby digest/digest\n",
+        "directive": "    ... github.com/alaturka/ruby digest/digest\n",
         "insertion": {
           "before": 1,
           "after": 1,
@@ -31,7 +31,7 @@
     "source": "lib/ellipses/support/entropy.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby string/entropy\n",
+        "directive": "    ... github.com/alaturka/ruby string/entropy\n",
         "insertion": {
           "before": 0,
           "after": 8,
@@ -45,7 +45,7 @@
     "source": "lib/ellipses/support/expand_path.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby file/expand_path\n",
+        "directive": "    ... github.com/alaturka/ruby file/expand_path\n",
         "insertion": {
           "before": 1,
           "after": 1,
@@ -59,7 +59,7 @@
     "source": "lib/ellipses/support/intersperse_arrays.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby array/intersperse_arrays\n",
+        "directive": "    ... github.com/alaturka/ruby array/intersperse_arrays\n",
         "insertion": {
           "before": 2,
           "after": 3,
@@ -73,7 +73,7 @@
     "source": "lib/ellipses/support/refinements.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby struct/refinements/from_hash_without_bogus_keys\n",
+        "directive": "    ... github.com/alaturka/ruby struct/refinements/from_hash_without_bogus_keys\n",
         "insertion": {
           "before": 5,
           "after": 8,
@@ -87,7 +87,7 @@
     "source": "lib/ellipses/support/sanitize_path.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby file/sanitize_path\n",
+        "directive": "    ... github.com/alaturka/ruby file/sanitize_path\n",
         "insertion": {
           "before": 85,
           "after": 7,
@@ -101,7 +101,7 @@
     "source": "lib/ellipses/support/search_path.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby file/search_path\n",
+        "directive": "    ... github.com/alaturka/ruby file/search_path\n",
         "insertion": {
           "before": 1,
           "after": 7,
@@ -115,7 +115,7 @@
     "source": "lib/ellipses/support/shell.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby shell/runner\n",
+        "directive": "    ... github.com/alaturka/ruby shell/runner\n",
         "insertion": {
           "before": 47,
           "after": 29,
@@ -129,7 +129,7 @@
     "source": "lib/ellipses/support/to_range.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby range/to_range\n",
+        "directive": "    ... github.com/alaturka/ruby range/to_range\n",
         "insertion": {
           "before": 4,
           "after": 2,
@@ -143,7 +143,7 @@
     "source": "lib/ellipses/support/ui.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby ui/color\n",
+        "directive": "    ... github.com/alaturka/ruby ui/color\n",
         "insertion": {
           "before": 14,
           "after": 14,
@@ -157,7 +157,7 @@
     "source": "lib/ellipses/support/updatelines.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby file/updatelines\n",
+        "directive": "    ... github.com/alaturka/ruby file/updatelines\n",
         "insertion": {
           "before": 9,
           "after": 1,
@@ -171,7 +171,7 @@
     "source": "lib/ellipses/support/writelines.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby file/writelines\n",
+        "directive": "    ... github.com/alaturka/ruby file/writelines\n",
         "insertion": {
           "before": 1,
           "after": 1,
@@ -185,7 +185,7 @@
     "source": "lib/ellipses/support/prefixize_non_blank.rb",
     "series": [
       {
-        "directive": "    ... github.com/alaturka/alaturka/src/ruby string/prefixize_non_blank\n",
+        "directive": "    ... github.com/alaturka/ruby string/prefixize_non_blank\n",
         "insertion": {
           "before": 0,
           "after": 7,
