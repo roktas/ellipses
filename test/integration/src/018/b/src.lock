@@ -1,0 +1,30 @@
+[
+  {
+    "source": "test1.sh",
+    "series": [
+      {
+        "directive": "\t... . a\n",
+        "insertion": {
+          "before": 0,
+          "after": 0,
+          "signature": "\tBBBB\n",
+          "digest": "b8072b4fdfdf019bec66992857c4d6a1ad1643a257a604c54accedb44b1427ac"
+        }
+      }
+    ]
+  },
+  {
+    "source": "test2.sh",
+    "series": [
+      {
+        "directive": "\t... . a\n",
+        "insertion": {
+          "before": 0,
+          "after": 0,
+          "signature": "\tBBBB\n",
+          "digest": "b8072b4fdfdf019bec66992857c4d6a1ad1643a257a604c54accedb44b1427ac"
+        }
+      }
+    ]
+  }
+]
