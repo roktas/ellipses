@@ -69,7 +69,12 @@ eklenmiştir.)
 
 Derlenecek veya geri derlenecek kaynak kod içeriklerini yöneten nesne.  İçerik satırlar halinde `Lines` nesnesine
 dönüştürülerek tutulur.  İşlem geçmişi `series` dizisiyle iletilir.  Dosya zaten derlenmemiş veya geri derlenmiş
-durumdaysa bu dizi boştur.  Nesne temelde üç işlem gerçekleştirir: `compile`, `decompile` ve `recompile`.
+durumdaysa bu dizi boştur.  Her source nesnesi ilkleme sırasında iletilen bir `Server::Application` sunucu nesnesi alır.
+Sunucu nesnesi derleme işlemi sırasında talep edilen ekleme isteklerine cevap verir.  Sunucu nesnesi genel olarak
+`Source.from_file` sınıf metodu içinde kaynak dosyaya özgü olarak inşa edildiğinden her `Source` nesnesinde iletilen
+satırların kaynağı olan kaynak dosyaya özgü bir sunucu nesnesi bulunmaktadır.  Bu sayede aynı sunucu deposundan bir
+sembol tüketildiğinde bu işlemin etkisi sadece o dosya ile sınırlıdır.  Diğer bir anlatımla aynı sembol bir başka kaynak
+dosyada da talep edilebilir.  Nesne temelde üç işlem gerçekleştirir: `compile`, `decompile` ve `recompile`.
 
 Derleme işleminde satırlar (`lines`) üzerinde dolaşılarak "direktif" (`Directive`) eşleştirmesi yapılır.  Satırda
 "direktif" varsa `Parser` nesnesiyle ayrıştırılarak `Directive` nesnesi oluşturulur ve çalıştırılır (`execute`).

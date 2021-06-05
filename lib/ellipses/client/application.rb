@@ -3,13 +3,12 @@
 module Ellipses
   module Client
     class Application
-      attr_reader :config, :repository, :loader, :server
+      attr_reader :config, :repository, :loader
 
-      def initialize(loader: nil, repository: nil, server: nil, **options)
+      def initialize(loader: nil, repository: nil, **options)
         @config     = Config.new(**options)
         @loader     = loader     || MetaFile.new
-        @repository = repository || Repository.new(@loader)
-        @server     = server     || Server::Application.new(config.paths)
+        @repository = repository || Repository.new(@loader, @config)
       end
 
       def init(directory)
@@ -24,7 +23,7 @@ module Ellipses
 
       def compile(file)
         init!
-        repository.register(file).recompile(server)
+        repository.register(file).recompile
       end
 
       def compile!(file)
@@ -47,7 +46,7 @@ module Ellipses
 
       def update
         init!
-        repository.each_source { |source| source.recompile(server) }
+        repository.each_source(&:recompile)
         shutdown
       end
 

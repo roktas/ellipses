@@ -17,10 +17,11 @@ module Ellipses
 
       private_constant :File
 
-      attr_reader :loader
+      attr_reader :loader, :config
 
-      def initialize(loader)
+      def initialize(loader, config)
         @loader = loader
+        @config = config
         @files  = {}
         @memo   = {}
       end
@@ -35,7 +36,7 @@ module Ellipses
 
       def load(loader)
         Dir.chdir loader.directory do
-          loader.read.each { |meta| register_internal(meta.source, Source.from_file(meta.source, meta.series)) }
+          loader.read.each { |meta| register_internal(meta.source, Source.from_file(meta.source, config, meta.series)) }
         end
       end
 
@@ -58,12 +59,12 @@ module Ellipses
         meta
       end
 
-      def register(path, *args, **kwargs)
+      def register(path)
         if @files.key?(key = memo(path))
           return @files[key].tap { |file| file.registered = true }.source
         end
 
-        register_internal(key, Source.from_file(path, *args, **kwargs))
+        register_internal(key, Source.from_file(path, config))
       end
 
       def unregister(path)
