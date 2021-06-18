@@ -34,6 +34,10 @@ Yakın çevrenin kullanımına teşvik edilecek sürüm
 
 - [ ] Öntanımlı sembol desteği
 
+- [ ] Sunucu meta dosyası yerine (parçalı dosyalardan oluşan) bir dizinin kullanılabilmeli
+
+  (Bu sayede dosyaların bir kısmı generate edilebilir)
+
 Sürüm `1.0`
 -------------------------------
 
