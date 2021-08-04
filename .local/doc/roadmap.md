@@ -59,14 +59,13 @@ Resmi ilk sürüm
 
 - [ ] Konumlandırılmış bağımlılık desteği ekle
 
-      Bu bağımlılıklar ilgili sembol bildirilirken inline olacak tanımlanacak.  Örnek senaryo: Eklenen bir bloğun
-      gerektirdiği `require` veya `import` satırları da eklenebilmeli.
+  Bu bağımlılıklar ilgili sembol bildirilirken inline olacak tanımlanacak.  Örnek senaryo: Eklenen bir bloğun
+  gerektirdiği `require` veya `import` satırları da eklenebilmeli.
 
 - [ ] Zayıf bağımlılık desteği ekle
 
-      Bağımlılık olarak bildirilen bloklar aynı dosyada olmasa bile bir şekilde derlemede (başka bir dosyada) eklenmiş
-      olmalı.  Örnek senaryo: Bir Ruby bloğu başka bir bloktaki sabitleri kullanıyor, fakat bu bloklar farklı bir
-      dosyada.
+  Bağımlılık olarak bildirilen bloklar aynı dosyada olmasa bile bir şekilde derlemede (başka bir dosyada) eklenmiş
+  olmalı.  Örnek senaryo: Bir Ruby bloğu başka bir bloktaki sabitleri kullanıyor, fakat bu bloklar farklı bir dosyada.
 
 - [ ] İzlenen dosyalardaki "rename"leri yönet
 
