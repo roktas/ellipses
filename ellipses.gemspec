@@ -36,4 +36,7 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_development_dependency 'rubocop-performance'
   s.add_development_dependency 'rubocop-rake'
   s.add_development_dependency 'rubygems-tasks'
+  s.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 end
