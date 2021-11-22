@@ -33,6 +33,8 @@ Style/Lambda:
   Enabled: false
 Style/LambdaCall:
   Enabled: false
+Style/OpenStructUse:
+  Enabled: false
 Style/ParallelAssignment:
   Enabled: false
 
