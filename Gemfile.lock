@@ -28,7 +28,7 @@ GEM
       ast (~> 2.4.1)
     rainbow (3.0.0)
     rake (13.0.6)
-    regexp_parser (2.1.1)
+    regexp_parser (2.2.0)
     reline (0.2.7)
       io-console (~> 0.5)
     rexml (3.2.5)
