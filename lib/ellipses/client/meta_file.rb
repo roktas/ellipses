@@ -5,7 +5,7 @@ require 'json'
 module Ellipses
   module Client
     class MetaFile
-      FILES = %w[.local/var/src.lock src.lock .src.lock].freeze
+      FILES = %w[.local/etc/src.lock src.lock .src.lock].freeze
       EMPTY = "[]\n"
 
       def self.create(directory)
