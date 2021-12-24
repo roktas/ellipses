@@ -23,7 +23,11 @@ module Ellipses
       def read
         Meta.new Tomlrb.load_file(@file)
       rescue StandardError => e
-        raise Error, "Error while loading meta file: #{file}: #{e.message}"
+        raise Error, <<~MSG
+          Error loading meta file: #{@file}
+
+             #{e.message.strip}
+        MSG
       end
 
       class << self
