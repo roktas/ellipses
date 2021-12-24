@@ -27,15 +27,6 @@ Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
   s.add_dependency 'dry-cli'
   s.add_dependency 'tomlrb'
 
-  s.add_development_dependency 'bundler'
-  s.add_development_dependency 'minitest-focus', '>= 1.2.1'
-  s.add_development_dependency 'minitest-reporters', '>= 1.4.3'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rubocop'
-  s.add_development_dependency 'rubocop-minitest'
-  s.add_development_dependency 'rubocop-performance'
-  s.add_development_dependency 'rubocop-rake'
-  s.add_development_dependency 'rubygems-tasks'
   s.metadata = {
     'rubygems_mfa_required' => 'true'
   }
