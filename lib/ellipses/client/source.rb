@@ -60,9 +60,9 @@ module Ellipses
       end
 
       class << self
-        def from_file(file, config, series = nil)
+        def from_file(file, paths, series = nil)
           lines = File.readlines(Support.file!(file, error: Error)).lazy
-          new lines, series, Server::Application.new(config.paths)
+          new lines, series, Server::Application.new(paths)
         end
       end
     end

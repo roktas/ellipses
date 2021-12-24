@@ -3,12 +3,12 @@
 module Ellipses
   module Client
     class Application
-      attr_reader :config, :repository, :loader
+      attr_reader :loader, :paths, :repository
 
-      def initialize(loader: nil, repository: nil, **options)
-        @config     = Config.new(**options)
-        @loader     = loader     || MetaFile.new
-        @repository = repository || Repository.new(@loader, @config)
+      def initialize(loader: nil, repository: nil, paths: nil)
+        @loader     = loader || MetaFile.new
+        @paths      = locate(paths)
+        @repository = repository || Repository.new(@loader, @paths)
       end
 
       def init(directory)
@@ -66,9 +66,16 @@ module Ellipses
         repository.load(loader)
       end
 
+      def locate(paths)
+        environment            = %w[ELLIPSES_PATH SRCPATH].find { |env| ENV.key? env }
+        paths_from_environment = environment ? ENV[environment].split(':') : []
+
+        [*(paths || []), loader.directory, *paths_from_environment].compact.uniq.select { |path| File.directory?(path) }
+      end
+
       class << self
         %i[init compile compile! decompile decompile! update].each do |meth|
-          define_method(meth) { |*args, **options| new(**options).public_send(meth, *args) }
+          define_method(meth) { |*args, **kwargs| new(**kwargs).public_send(meth, *args) }
         end
       end
     end
