@@ -4,7 +4,7 @@ $LOAD_PATH.push File.expand_path('lib', __dir__)
 
 require 'ellipses/version'
 
-Gem::Specification.new do |s| # rubocop:disable Metrics/BlockLength
+Gem::Specification.new do |s|
   s.name        = 'ellipses'
   s.author      = 'Recai Oktaş'
   s.email       = 'roktas@gmail.com'
