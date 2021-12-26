@@ -122,7 +122,7 @@ class Bumper
     content.gsub!(/^(\s*)VERSION(\s*)= .*?$/, "\\1VERSION = '#{version}'")
     raise "Could not insert VERSION in #{file}" unless Regexp.last_match
 
-    File.open(file, 'w') { |f| f.write content }
+    File.write(file, content)
   end
 
   def update_ruby_sources
