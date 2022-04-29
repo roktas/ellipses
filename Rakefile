@@ -25,7 +25,7 @@ end
 
 require 'rubygems/tasks'
 Gem::Tasks.new console: false do |tasks|
-  tasks.push.host = ENV['RUBYGEMS_HOST'] || Gem::DEFAULT_HOST
+  tasks.push.host = ENV.fetch('RUBYGEMS_HOST', Gem::DEFAULT_HOST)
 end
 
 CLEAN.include('*.gem', 'pkg')
