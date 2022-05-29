@@ -53,7 +53,7 @@ GEM
     ruby-progressbar (1.11.0)
     rubygems-tasks (0.2.5)
       irb (~> 1.0)
-    tomlrb (2.0.1)
+    tomlrb (2.0.3)
     unicode-display_width (2.1.0)
 
 PLATFORMS
