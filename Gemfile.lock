@@ -54,7 +54,7 @@ GEM
     rubygems-tasks (0.2.5)
       irb (~> 1.0)
     tomlrb (2.0.3)
-    unicode-display_width (2.1.0)
+    unicode-display_width (2.2.0)
 
 PLATFORMS
   x86_64-linux
