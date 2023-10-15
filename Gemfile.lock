@@ -53,8 +53,9 @@ GEM
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
-    rubygems-tasks (0.2.5)
+    rubygems-tasks (0.2.6)
       irb (~> 1.0)
+      rake (>= 10.0.0)
     tomlrb (2.0.3)
     unicode-display_width (2.5.0)
 
