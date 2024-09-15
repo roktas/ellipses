@@ -57,7 +57,7 @@ GEM
       irb (~> 1.0)
       rake (>= 10.0.0)
     tomlrb (2.0.3)
-    unicode-display_width (2.5.0)
+    unicode-display_width (2.6.0)
 
 PLATFORMS
   x86_64-linux
