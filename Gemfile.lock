@@ -56,7 +56,7 @@ GEM
     rubygems-tasks (0.3.0)
       irb (~> 1.0)
       rake (>= 10.0.0)
-    tomlrb (2.0.3)
+    tomlrb (2.0.4)
     unicode-display_width (2.6.0)
 
 PLATFORMS
